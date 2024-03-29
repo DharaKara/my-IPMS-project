@@ -91,9 +91,11 @@ except Exception as e:
 
 from users_bp import users_bp
 from contact_bp import contact_bp
+from faqs_bp import faqs_bp
 
 app.register_blueprint(users_bp)
 app.register_blueprint(contact_bp)
+app.register_blueprint(faqs_bp)
 
 
 @app.route("/")
@@ -120,13 +122,6 @@ def customers():
     # Fetch customers from the database
     customers = Customer.query.all()
     return render_template("customers.html", customers=customers)
-
-
-@app.route("/faqs")
-def faqs():
-    # Fetch claims from the database
-    faqs = FAQS.query.all()
-    return render_template("faqs.html", faqs=faqs)
 
 
 # if __name__ == "__main__":

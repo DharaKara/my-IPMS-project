@@ -4,3 +4,17 @@
     right: 20px;
     z-index: 1000; /* Ensure it's above other content */
 }
+
+h5, p, .quick-link, .fab, .text {
+    color: white;
+    text-align: center;
+}
+
+footer {
+    background-color: #0075C9;
+}
+
+/* Add space between social media icons */
+footer .col-lg-4 a:not(:last-child) {
+    margin-right: 10px;
+}
