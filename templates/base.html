@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,80 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Link custom CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Add font awesome CDN link for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add custom CSS for sticky contact button -->
+    {% block style %}{% endblock %}
 </head>
+
 <body>
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">IPMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='sanlam_logo.svg') }}" alt="Sanlam Logo" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link active" href="/">Home</a>
-                <a class="nav-item nav-link" href="/login">Login</a>
-                <a class="nav-item nav-link" href="/register">Register</a>
+                <a class="nav-item nav-link" href="/policies">Policies</a>
+                <a class="nav-item nav-link" href="/claims">Claims</a>
+                <a class="nav-item nav-link" href="/customers">Customers</a>
+                <a class="nav-item nav-link" href="/faqs">FAQs</a>
+                <a class="nav-item nav-link" href="/contact">Contact Us</a>
                 <!-- Add more navigation links as needed -->
             </div>
         </div>
     </nav>
-
+    <br><br>
     <div class="container">
         <!-- Main content of each page will be inserted here -->
         {% block content %}{% endblock %}
     </div>
 
+    <!-- Sticky Contact Us button -->
+    <a href="#" class="btn btn-outline-primary sticky-contact">
+        <i class="fas fa-comment-alt"></i> Contact Us
+    </a>
+    <br><br>
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container text-center text-white">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5>Follow Us</h5>
+                    <a href="#"><img src="{{ url_for('static', filename='facebook_icon.svg') }}" alt="Facebook" height="30"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='instagram_icon.svg') }}" alt="Instagram" height="30"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='youtube_icon.svg') }}" alt="YouTube" height="30"></a>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Download Our App</h5>
+                    <a href="#"><img src="{{ url_for('static', filename='google_play_icon.svg') }}" alt="Google Play" height="50"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='app_store_icon.svg') }}" alt="App Store" height="50"></a>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <a href="#">About</a><br>
+                    <a href="#">Policies</a><br>
+                    <!-- Add more quick links as needed -->
+                </div>
+            </div>
+            <hr class="my-4">
+            <p>&copy; 2024 Insurance Policy Management System</p>
+        </div>
+    </footer>
+    
     <!-- Bootstrap JavaScript and jQuery from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Additional scripts can be included here if needed -->
 </body>
 </html>
+
+
+
+
+

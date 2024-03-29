@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy.sql import text
 from dotenv import load_dotenv
 import uuid
@@ -62,6 +62,24 @@ class Claim(db.Model):
     customer = db.relationship("Customer", backref=db.backref("claims", lazy=True))
 
 
+class FAQS(db.Model):
+    __tablename__ = "faqs"
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    question = db.Column(db.String(255), nullable=False)
+    answer = db.Column(db.Text, nullable=False)
+
+
+class Contact(db.Model):
+    __tablename__ = "contact"
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(
+        db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc)
+    )
+
+
 try:
     with app.app_context():
         # Use text() to explicitly declare your SQL command
@@ -72,8 +90,10 @@ except Exception as e:
     print("Error connecting to the database:", e)
 
 from users_bp import users_bp
+from contact_bp import contact_bp
 
 app.register_blueprint(users_bp)
+app.register_blueprint(contact_bp)
 
 
 @app.route("/")
@@ -100,6 +120,13 @@ def customers():
     # Fetch customers from the database
     customers = Customer.query.all()
     return render_template("customers.html", customers=customers)
+
+
+@app.route("/faqs")
+def faqs():
+    # Fetch claims from the database
+    faqs = FAQS.query.all()
+    return render_template("faqs.html", faqs=faqs)
 
 
 # if __name__ == "__main__":
