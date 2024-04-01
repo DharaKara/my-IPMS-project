@@ -27,16 +27,32 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
 
 
+# class Policy(db.Model):
+#     __tablename__ = "policies"
+#     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+#     policy_number = db.Column(db.String(20), unique=True, nullable=False)
+#     type = db.Column(db.String(50), nullable=False)
+#     premium = db.Column(db.Float, nullable=False)
+#     start_date = db.Column(db.Date, nullable=False)
+#     end_date = db.Column(db.Date, nullable=False)
+#     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
+#     user = db.relationship("User", backref=db.backref("policies", lazy=True))
+
+
 class Policy(db.Model):
-    __tablename__ = "policies"
+    __tablename__ = "policy"
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    policy_number = db.Column(db.String(20), unique=True, nullable=False)
-    type = db.Column(db.String(50), nullable=False)
-    premium = db.Column(db.Float, nullable=False)
-    start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
-    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship("User", backref=db.backref("policies", lazy=True))
+    name = db.Column(db.String(100), nullable=False)
+    image_link = db.Column(db.String(255), nullable=False)
+    summary = db.Column(db.Text, nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "image_link": self.image_link,
+            "summary": self.summary,
+        }
 
 
 class Customer(db.Model):
@@ -48,18 +64,18 @@ class Customer(db.Model):
     phone_number = db.Column(db.String(20), nullable=False)
 
 
-class Claim(db.Model):
-    __tablename__ = "claims"
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    claim_number = db.Column(db.String(20), unique=True, nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    status = db.Column(db.String(50), nullable=False)
-    policy_id = db.Column(db.String(36), db.ForeignKey("policies.id"), nullable=False)
-    policy = db.relationship("Policy", backref=db.backref("claims", lazy=True))
-    customer_id = db.Column(
-        db.String(36), db.ForeignKey("customers.id"), nullable=False
-    )
-    customer = db.relationship("Customer", backref=db.backref("claims", lazy=True))
+# class Claim(db.Model):
+#     __tablename__ = "claims"
+#     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+#     claim_number = db.Column(db.String(20), unique=True, nullable=False)
+#     description = db.Column(db.Text, nullable=False)
+#     status = db.Column(db.String(50), nullable=False)
+#     policy_id = db.Column(db.String(36), db.ForeignKey("policies.id"), nullable=False)
+#     policy = db.relationship("Policy", backref=db.backref("claims", lazy=True))
+#     customer_id = db.Column(
+#         db.String(36), db.ForeignKey("customers.id"), nullable=False
+#     )
+#     customer = db.relationship("Customer", backref=db.backref("claims", lazy=True))
 
 
 class FAQS(db.Model):
@@ -92,29 +108,21 @@ except Exception as e:
 from users_bp import users_bp
 from contact_bp import contact_bp
 from faqs_bp import faqs_bp
+from home_bp import home_bp
+from policy_bp import policy_bp
 
 app.register_blueprint(users_bp)
 app.register_blueprint(contact_bp)
 app.register_blueprint(faqs_bp)
+app.register_blueprint(home_bp)
+app.register_blueprint(policy_bp)
 
 
-@app.route("/")
-def index():
-    return "Welcome to Insurance Policy Management System!"
-
-
-@app.route("/policies")
-def policies():
-    # Fetch policies from the database
-    policies = Policy.query.all()
-    return render_template("policies.html", policies=policies)
-
-
-@app.route("/claims")
-def claims():
-    # Fetch claims from the database
-    claims = Claim.query.all()
-    return render_template("claims.html", claims=claims)
+# @app.route("/claims")
+# def claims():
+#     # Fetch claims from the database
+#     claims = Claim.query.all()
+#     return render_template("claims.html", claims=claims)
 
 
 @app.route("/customers")
