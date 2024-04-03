@@ -105,11 +105,11 @@ try:
 except Exception as e:
     print("Error connecting to the database:", e)
 
-from users_bp import users_bp
-from contact_bp import contact_bp
-from faqs_bp import faqs_bp
-from home_bp import home_bp
-from policy_bp import policy_bp
+from routes.users_bp import users_bp
+from routes.contact_bp import contact_bp
+from routes.faqs_bp import faqs_bp
+from routes.home_bp import home_bp
+from routes.policy_bp import policy_bp
 
 app.register_blueprint(users_bp)
 app.register_blueprint(contact_bp)
