@@ -12,7 +12,7 @@ def policy():
     return render_template("policies.html", policy=policy)
 
 
-@policy_bp.route("/policies/<id>")
-def product_details(id):
-    policy = Policy.query.get_or_404(id)
-    return render_template("policies-details.html", policy=policy)
+@policy_bp.route("/policies/id")
+def product_details():
+    # policy = Policy.query.get_or_404(id)
+    return render_template("policies-details.html")

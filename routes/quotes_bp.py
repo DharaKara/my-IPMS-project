@@ -3,8 +3,14 @@ from flask import Blueprint, render_template, request
 quotes_bp = Blueprint("quotes_bp", __name__)
 
 
-@quotes_bp.route("/get_quote", methods=["GET", "POST"])
+@quotes_bp.route("/get_quote")
 def get_quote():
+    # policy = Policy.query.get_or_404(id)
+    return render_template("get-quote.html")
+
+
+@quotes_bp.route("/get_quote/result", methods=["GET", "POST"])
+def quote_result():
     if request.method == "POST":
         # Handle form submission and perform calculation
         vehicle_year = int(request.form["year"])
@@ -31,6 +37,6 @@ def get_quote():
         # Format the total quote to display
         formatted_quote = "${:,.2f}".format(total_quote)
 
-        return render_template("quote_result.html", quote=formatted_quote)
+        return render_template("quote-result.html", quote=formatted_quote)
 
     return render_template("get_quote.html")
