@@ -2,7 +2,8 @@ from flask import Blueprint, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
-from app import User, db
+from extension import db
+from models.user import User
 
 users_bp = Blueprint("users_bp", __name__)
 

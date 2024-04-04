@@ -10,7 +10,7 @@
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam quam nec justo dictum, nec ultricies lorem commodo.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum tempus neque, eu egestas ex mattis sit amet.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum tempus neque, eu egestas ex mattis sit amet. Aliquam in pulvinar dolor. Integer lacinia turpis quis ex placerat, at faucibus velit cursus. Cras ultricies magna at metus congue dapibus.</p>
-            <button class="btn btn-primary mr-3">Get a Quick Quote</button>
+            <button class="btn btn-primary mr-3" type="submit" method="post" action="{{ url_for('quotes_bp.get_quote')}}">Get a Quick Quote</button>
             <button class="btn btn-secondary">Call Me Back</button>
         </div>
         <div class="col-md-4">

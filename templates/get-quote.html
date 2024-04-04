@@ -1,0 +1,29 @@
+<!-- get_quote.html -->
+{% extends 'base.html' %}
+
+{% block title %}Get a Quote{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Get a Quote</h2>
+    <form method="post" action="{{ url_for('quotes_bp.get_quote') }}">
+        <div class="form-group">
+            <label for="year">Vehicle Year:</label>
+            <input type="text" class="form-control" id="year" name="year" placeholder="Enter vehicle year">
+        </div>
+        <div class="form-group">
+            <label for="age">Driver's Age:</label>
+            <input type="text" class="form-control" id="age" name="age" placeholder="Enter driver's age">
+        </div>
+        <div class="form-group">
+            <label for="coverage_limits">Coverage Limits:</label>
+            <input type="text" class="form-control" id="coverage_limits" name="coverage_limits" placeholder="Enter coverage limits">
+        </div>
+        <div class="form-group">
+            <label for="deductible">Deductible:</label>
+            <input type="text" class="form-control" id="deductible" name="deductible" placeholder="Enter deductible">
+        </div>
+        <button type="submit" class="btn btn-primary">Get Quote</button>
+    </form>
+</div>
+{% endblock %}

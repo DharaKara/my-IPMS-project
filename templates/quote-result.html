@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Quote Result{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Quote Result</h2>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Estimated Quote:</h5>
+            <p class="card-text">{{ quote }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

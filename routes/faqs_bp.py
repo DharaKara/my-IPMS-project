@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import DataRequired, Email
-from app import FAQS, db
+from flask import Blueprint, render_template
+
+# from extension import db
+from models.faqs import FAQS
 
 faqs_bp = Blueprint("faqs_bp", __name__)
 

@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template
-from app import Policy, db
+
+# from extension import db
+from models.policy import Policy
 
 policy_bp = Blueprint("policy_bp", __name__)
 
