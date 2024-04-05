@@ -12,6 +12,9 @@
     <!-- Add font awesome CDN link for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Add custom CSS for sticky contact button -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-nRW3PmhxoObHJy+V2FC7qPsnRjV0wNt3uY7CT6xL36XecvL0pTKRsRP6ZU/kQbGtdo0Kth0W0/TqtpqkBt3k6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% block style %}{% endblock %}
 </head>
 
@@ -19,7 +22,7 @@
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='sanlam_logo.jpg') }}" alt="Sanlam Logo" height="80">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Sanlam Logo" height="80">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +56,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="{{ url_for('static', filename='sanlam_logo.jpg') }}" alt="Sanlam Logo" height="80">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Sanlam Logo" height="80">
                     <p><i class="fas fa-phone-alt"></i> 021 947 9111</p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:life@sanlam.co.za"><span class="text">Email</span></a></p>
                     <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/Sanlam+Head+Office+Bellville/@-33.903576,18.640943,16z/data=!4m6!3m5!1s0x1dcc50523656ccff:0xea9a751271b13c3a!8m2!3d-33.9036861!4d18.6410284!16s%2Fg%2F11h0_d_81?entry=ttu"><span  class="text">Sanlam Head Office<br>2 Strand Road, Bellville</span></a></p>
@@ -68,7 +71,7 @@
                 </div>
                 <div class="col-lg-4">
                     <h5>Download Our App</h5>
-                    <a href="https://play.google.com/store/apps/details?id=za.co.sanlam.mobile"><span class="text">Google Play Store</span> <i class="fab fa-google-play fa-2x"></i></a><br>
+                    <a href="https://play.google.com/store/apps/details?id=za.co.sanlam.mobile"><span class="text">Google Play Store</span> <i class="fab fa-google-play fa-2x"></i></a>
                     <a href="https://apps.apple.com/za/app/sanlam-portfolio/id1403839427"><span class="text">iOS App Store</span> <i class="fab fa-app-store-ios fa-2x"></i></a>
                 </div>
             </div>

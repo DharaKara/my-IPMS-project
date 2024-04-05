@@ -1,9 +1,187 @@
 {% extends 'base.html' %}
 
+{% block title %}Vehicle Insurance{% endblock %}
+
+{% block style %}
+<style>
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .testimonial-item {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    .testimonial-item img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    /* Set maximum width for the carousel container */
+    .carousel-container {
+        margin-top: 50px; /* Add space between containers */
+        background-color: skyblue;
+        padding: 30px;
+    }
+
+    /* Adjust carousel controls */
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+    }
+
+    /* Add hover effect to carousel controls */
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h1>Welcome to Insurance Policy Management System</h1>
-    <!-- Insert the provided iframe for the YouTube video -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/qC62iTZXfsc?si=yynq9wJHAZwsBLOy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <h2>Types of Vehicle Insurance</h2>
+    
+    <h3>Table Format:</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Insurance Type</th>
+                <th>Coverage</th>
+            </tr>
+            <tr>
+                <td>Comprehensive</td>
+                <td>Accidents, theft and hijacking, vandalism, fire and explosions, damage to someone else's property, weather damage.</td>
+            </tr>
+            <tr>
+                <td>Third Party, Fire & Theft</td>
+                <td>Theft and hijacking, fire and explosions, damage to someone else's property.</td>
+            </tr>
+            <tr>
+                <td>Third Party</td>
+                <td>Damage to someone else's property.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Card Format:</h3>
+    <div class="card">
+        <div class="card-header" data-toggle="collapse" data-target="#comprehensiveBody">
+            Comprehensive Car Insurance
+            <i class="fas fa-plus float-right"></i>
+        </div>
+        <div id="comprehensiveBody" class="collapse">
+            <div class="card-body">
+                <p>This provides cover for just about any form of financial loss related to your vehicle, including car accidents, thefts, hijackings, fire damage, natural disasters, and damage to someone else's car.</p>
+                <a href="#">Learn More About Comprehensive Car Insurance</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" data-toggle="collapse" data-target="#thirdpartyfiretheftBody">
+            Third Party, Fire & Theft Insurance
+            <i class="fas fa-plus float-right"></i>
+        </div>
+        <div id="thirdpartyfiretheftBody" class="collapse">
+            <div class="card-body">
+                <p>If you don't want the full package of a comprehensive car insurance policy, but still want some form of cover, then third-party, fire & theft is a good option. This will pay for the accidental damage you might cause if you're at fault in a car accident. It will also protect you financially if your car is damaged by a fire, stolen, or if you're hijacked.</p>
+                <a href="#">Learn More About Third-Party, Fire & Theft Insurance</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" data-toggle="collapse" data-target="#thirdpartyBody">
+            Third Party Car Insurance
+            <i class="fas fa-plus float-right"></i>
+        </div>
+        <div id="thirdpartyBody" class="collapse">
+            <div class="card-body">
+                <p>Want to be financially covered in case you cause an accident? This is the type of insurance you want. It will ensure that you aren't paying for repairs on someone else's car completely out of your own pocket if you cause a road accident.</p>
+                <a href="#">Learn More About Third-Party Car Insurance</a>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- Testimonials Section -->
+     <h2 class="text-center my-4">Testimonials</h2>
+     <!-- Carousel Container with Maximum Width -->
+     <div class="carousel-container">
+         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+             <div class="carousel-inner">
+                 <div class="carousel-item active">
+                     <div class="row">
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 1">
+                                 <p>"I saved a lot of money on my car insurance by switching to their comprehensive coverage. Highly recommended!"</p>
+                                 <p>- John Doe</p>
+                             </div>
+                         </div>
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 2">
+                                 <p>"Their third-party, fire & theft insurance plan provided me peace of mind without breaking the bank. Great service!"</p>
+                                 <p>- Jane Smith</p>
+                             </div>
+                         </div>
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 3">
+                                 <p>"Excellent customer service! Third-party car insurance saved me from a financial disaster. Thank you!"</p>
+                                 <p>- Michael Johnson</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="carousel-item">
+                     <div class="row">
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 4">
+                                 <p>"The comprehensive coverage was worth every penny. It's reassuring to know my vehicle is protected from all sorts of risks."</p>
+                                 <p>- Emily Wilson</p>
+                             </div>
+                         </div>
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 5">
+                                 <p>"I've been with them for years, and their third-party car insurance has always been reliable and affordable."</p>
+                                 <p>- Robert Anderson</p>
+                             </div>
+                         </div>
+                         <div class="col-sm-4">
+                             <div class="testimonial-item">
+                                 <img src="https://via.placeholder.com/150" alt="Testimonial 6">
+                                 <p>"The third-party, fire & theft insurance is a great middle ground. It gives me peace of mind without breaking the bank."</p>
+                                 <p>- Sarah Thompson</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- Add more carousel-items as needed -->
+             </div>
+             <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                 <span class="sr-only">Previous</span>
+             </a>
+             <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                 <span class="sr-only">Next</span>
+             </a>
+         </div>
+     </div>
 </div>
 {% endblock %}
+
+
+    
+    
+

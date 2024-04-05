@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 from dotenv import load_dotenv
 import os
 from extension import db
+from models.user import User
 from models.customer import Customer
 
 load_dotenv()  # os env (environmental variable)

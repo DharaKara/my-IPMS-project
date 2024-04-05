@@ -15,7 +15,7 @@ from extension import db
 
 class Policy(db.Model):
     __tablename__ = "policy"
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = db.Column(db.String(36), primary_key=True, default=(lambda: str(uuid.uuid4())))
     name = db.Column(db.String(100), nullable=False)
     image_link = db.Column(db.String(255), nullable=False)
     summary = db.Column(db.Text, nullable=False)
