@@ -5,16 +5,82 @@
     z-index: 1000; /* Ensure it's above other content */
 }
 
-.quick-link, .fab, .text {
+.quick-link, .fab, .fas, .text {
     color: white;
     text-align: center;
 }
 
+.text {
+    font-size: 14px;
+}
+
 footer {
     background-color: #0075C9;
+    text-align: center;
+    color: white;
+}
+
+.icon-style {
+    display: inline-flex; /* Display icons inline */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    border-radius: 50%;
+    background-color: black;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px; /* Add space between icons */
+}
+
+.logo-size {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+.icon-size {
+    font-size: 12px; /* Adjust the size of icons */
 }
 
 /* Add space between social media icons */
 footer .col-lg-4 a:not(:last-child) {
     margin-right: 10px;
 }
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .icon-style {
+        width: 40px;
+        height: 40px;
+        font-size: 20px; /* Adjust icon size */
+    }
+}
+
+@media (max-width: 576px) {
+    .icon-style {
+        width: 30px;
+        height: 30px;
+        font-size: 16px; /* Adjust icon size */
+    }
+}
+
+/* Default styles for navigation links */
+.navbar-nav .nav-item {
+    color: #333; /* Default text color */
+    text-decoration: none; /* Remove underline */
+    margin-right: 20px; /* Add spacing between links */
+    font-size: 18px; /* Set font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect */
+.navbar-nav .nav-item:hover {
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Active link styles 
+.navbar-nav .nav-item:active,
+.navbar-nav .nav-item:focus {
+    color: #007bff; 
+    font-weight: bold; 
+} */
+
+

@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %}1st for Women - Car Insurance Details{% endblock %}
+
+{% block style %}
+<style>
+    .partner-header {
+        background-image: url('https://blobs.digitalcdn.co.za/cdn-cgi/image/fit=scale-down,format=auto,metadata=keep,sharpen=0.5/blobs/0c4eb5a33eb24f019ae28f05f5e08927/71096c1eb2344c23ba2ccd58fa41969e.webp');
+        background-size: cover;
+        background-position: center;
+        height: 300px; /* Adjust height as needed */
+        object-fit: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .transparent-container {
+        max-width: 90%; /* Adjust text container width */
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        color: #0075C9; /* Darker text color */
+        padding: 10px; /* Add padding for better readability */
+        border-radius: 5px; /* Optional: Add border radius for aesthetics */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+    }
+
+    .text-container,
+    .img-container {
+        flex: 1; /* Equal flex to make them the same size */
+        margin: 10px; /* Margin for the text container */
+    }
+
+    .img-container {
+        overflow: hidden; /* Ensure images don't overflow */
+    }
+
+    .img-container img {
+        width: 100%; /* Ensure image takes full width */
+        height: 100%; /* Ensure image takes full height of the container */
+        object-fit: cover; /* Maintain aspect ratio */
+        border-radius: 10px; /* Round corners */
+    }
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .partner-content {
+        padding: 20px;
+    }
+
+    .partner-section {
+        margin-bottom: 30px;
+        border: 1px solid #ccc; /* Border around the outside */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Border shadow */
+        border-radius: 15px; /* Border radius for outer border */
+        overflow: hidden; /* Ensure images don't overflow */
+        display: flex;
+    }
+
+    /* Responsive Styling */
+    @media screen and (max-width: 768px) {
+        .partner-section {
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .partner-header {
+            height: 200px;
+        }
+    }
+</style>
+{% endblock %}
+
+<!-- 
+<div class="partner-header">
+    <h1 class="transparent-container">1st for Women</h1>
+</div> 
+
+<div class="container partner-content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="partner-section">
+                <div class="img-container">
+                    <img src="https://investoguru.org/wp-content/uploads/2018/03/car-insurance-for-women-1024x680.jpg" alt="Comprehensive Protection Image">
+                </div>
+                <div class="text-container">
+                    <h3>Comprehensive Protection for Women on the Road</h3>
+                    <p>1st for Women is dedicated to providing comprehensive car insurance solutions tailored specifically for women. Our policies offer:</p>
+                    <ul>
+                        <li>Specialized coverage for women drivers</li>
+                        <li>24/7 Accident and Roadside Assistance</li>
+                        <li>Exclusive discounts and benefits for women</li>
+                        <li>Access to a dedicated fleet of Guardian Angels</li>
+                    </ul>
+                    <p>With 1st for Women, women drivers can enjoy peace of mind and security on the road.</p>
+                </div>
+            </div>
+
+            <div class="partner-section">
+                <div class="text-container">
+                    <h3>Empowering Women Through Technology</h3>
+                    <p>Our innovative mobile app empowers women with advanced safety features:</p>
+                    <ul>
+                        <li>Real-time trip monitoring for added security</li>
+                        <li>Instant access to emergency services with a panic button</li>
+                        <li>Guardian Angel support for personal assistance</li>
+                        <li>Customizable preferences for personalized safety</li>
+                    </ul>
+                    <p>Stay connected and protected with 1st for Women's cutting-edge technology.</p>
+                </div>
+                <div class="img-container">
+                    <img src="https://blobs.digitalcdn.co.za/cdn-cgi/image/fit=scale-down,format=auto,metadata=keep,sharpen=0.5/blobs/089df19b7b5e466fbdf69f19c39b23a6/fc0a4e8edc7546d3b395ada9c06f239a.png" alt="Empowering Women Image">
+                </div>
+            </div>
+
+            <div class="partner-section">
+                <div class="img-container">
+                    <img src="https://th.bing.com/th/id/R.e383177887ce7164cd7b560c75b8900d?rik=QmCMLf41AQBhiQ&pid=ImgRaw&r=0" alt="Supporting Women-Owned Businesses Image">
+                </div>
+                <div class="text-container">
+                    <h3>Supporting Women-Owned Businesses</h3>
+                    <p>1st for Women offers specialized insurance solutions for women-owned businesses, including:</p>
+                    <ul>
+                        <li>Business liability coverage tailored for women entrepreneurs</li>
+                        <li>Legal expense protection for business-related disputes</li>
+                        <li>Financial security with comprehensive business insurance</li>
+                        <li>Exclusive discounts and benefits for women business owners</li>
+                    </ul>
+                    <p>Protect your business and assets with 1st for Women's dedicated support for women entrepreneurs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+{% block content %}
+<div class="partner-header" style="background-image: url('https://media.istockphoto.com/photos/car-insurance-picture-id509469590?k=6&m=509469590&s=170667a&w=0&h=gvNm0IQDE4EIPp2AoucJtU_YfjKi28vR71vFy-8IS5Y=');">
+    <h1 class="transparent-container">{{ partner.name }}</h1>
+</div> 
+
+<div class="container partner-content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            {% for section in partner_sections %}
+            <div class="partner-section">
+                {% if section.id % 2 == 0 %}
+                    <div class="img-container">
+                        <img src="{{ section.image_url }}" alt="{{ section.title }}">
+                    </div>
+                    <div class="text-container">
+                        <h3>{{ section.title }}</h3>
+                        <p>{{ section.description }}</p>
+                        <ul>
+                            {% for feature in section.features %}
+                            <li>{{ feature.description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="text-container">
+                        <h3>{{ section.title }}</h3>
+                        <p>{{ section.description }}</p>
+                        <ul>
+                            {% for feature in section.features %}
+                            <li>{{ feature.description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="img-container">
+                        <img src="{{ section.image_url }}" alt="{{ section.title }}">
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

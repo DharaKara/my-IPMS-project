@@ -18,6 +18,7 @@
     .testimonial-item img {
         width: 100px;
         height: 100px;
+        object-fit: cover;
         border-radius: 50%;
         margin-bottom: 20px;
     }
@@ -40,14 +41,26 @@
     .carousel-control-next:hover {
         background-color: rgba(0, 0, 0, 0.5);
     }
+
+    .jumbotron {
+        text-align: center;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h2>Types of Vehicle Insurance</h2>
-    
-    <h3>Table Format:</h3>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to InsureWheels</h1>
+            <p class="lead">At InsureWheels, we understand the importance of protecting your vehicle and your peace of mind. That's why we offer a range of comprehensive insurance solutions tailored to your needs. Whether you're looking for coverage against accidents, theft, fire, or third-party liabilities, we've got you covered. Our dedicated team is committed to providing exceptional service and ensuring that you have the protection you need when you need it most.</p>
+            <hr class="my-4">
+            <p>Explore our range of insurance options and experience the difference with InsureWheels today.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+    </div>
+
+    <h2 class="text-center my-4">Types of Vehicle Insurance</h2>    
     <table class="table">
         <tbody>
             <tr>
@@ -69,7 +82,6 @@
         </tbody>
     </table>
 
-    <h3>Card Format:</h3>
     <div class="card">
         <div class="card-header" data-toggle="collapse" data-target="#comprehensiveBody">
             Comprehensive Car Insurance
@@ -109,7 +121,6 @@
         </div>
     </div>
 
-
      <!-- Testimonials Section -->
      <h2 class="text-center my-4">Testimonials</h2>
      <!-- Carousel Container with Maximum Width -->
@@ -120,21 +131,21 @@
                      <div class="row">
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 1">
+                                 <img src="https://th.bing.com/th/id/OIP.gXdmZ3lytivjamUpjm2r5QHaLH?rs=1&pid=ImgDetMain" alt="Testimonial 1">
                                  <p>"I saved a lot of money on my car insurance by switching to their comprehensive coverage. Highly recommended!"</p>
                                  <p>- John Doe</p>
                              </div>
                          </div>
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 2">
+                                 <img src="https://th.bing.com/th/id/OIP.QcCXGD5C2rWXLkmUVb7HnwHaLH?rs=1&pid=ImgDetMain" alt="Testimonial 2">
                                  <p>"Their third-party, fire & theft insurance plan provided me peace of mind without breaking the bank. Great service!"</p>
                                  <p>- Jane Smith</p>
                              </div>
                          </div>
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 3">
+                                 <img src="https://th.bing.com/th/id/R.d29ba4d6ed18947a74bd0c0a09830849?rik=dVbZS58HntpY3Q&pid=ImgRaw&r=0" alt="Testimonial 3">
                                  <p>"Excellent customer service! Third-party car insurance saved me from a financial disaster. Thank you!"</p>
                                  <p>- Michael Johnson</p>
                              </div>
@@ -145,21 +156,21 @@
                      <div class="row">
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 4">
+                                 <img src="https://th.bing.com/th/id/OIP.B2lWR0NfcQEl2KB1VD-AQAHaJH?rs=1&pid=ImgDetMain" alt="Testimonial 4">
                                  <p>"The comprehensive coverage was worth every penny. It's reassuring to know my vehicle is protected from all sorts of risks."</p>
                                  <p>- Emily Wilson</p>
                              </div>
                          </div>
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 5">
+                                 <img src="https://th.bing.com/th/id/R.023672cb1185dfadd27cf002d80994fd?rik=cQkebfF7CTbOUA&pid=ImgRaw&r=0" alt="Testimonial 5">
                                  <p>"I've been with them for years, and their third-party car insurance has always been reliable and affordable."</p>
                                  <p>- Robert Anderson</p>
                              </div>
                          </div>
                          <div class="col-sm-4">
                              <div class="testimonial-item">
-                                 <img src="https://via.placeholder.com/150" alt="Testimonial 6">
+                                 <img src="https://th.bing.com/th/id/OIP.AIreG9FfdaeHsvZFsju1DAHaLH?rs=1&pid=ImgDetMain" alt="Testimonial 6">
                                  <p>"The third-party, fire & theft insurance is a great middle ground. It gives me peace of mind without breaking the bank."</p>
                                  <p>- Sarah Thompson</p>
                              </div>

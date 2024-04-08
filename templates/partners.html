@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Partners - Insurance Policy Management System{% endblock %}
+
+{% block style %}
+<style>
+    .card {
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .card-img {
+        max-width: 250px; 
+        aspect-ratio: 1/1; 
+        object-fit: cover;
+    }
+
+    .card-text {
+        font-size: 14px; 
+        color: hsl(0, 0%, 50%); 
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Partners</h2>
+    <div class="row mt-4">
+        <!-- Partner Cards -->
+        {% for p in partner %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ p.image_link }}" class="card-img" alt="partner img"><br><br>
+                    <p class="card-text">{{ p.summary }}</p>
+                    <a href="{{ url_for('partner_bp.partner_details', partner_id=p.id) }}" class="btn btn-primary">Read More</a> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

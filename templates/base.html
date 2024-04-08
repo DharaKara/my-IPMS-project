@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-nRW3PmhxoObHJy+V2FC7qPsnRjV0wNt3uY7CT6xL36XecvL0pTKRsRP6ZU/kQbGtdo0Kth0W0/TqtpqkBt3k6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% block style %}{% endblock %}
 </head>
-
 <body>
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{ url_for('static', filename='logo.png') }}" alt="Sanlam Logo" height="80">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -30,13 +28,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link active" href="/">Home</a>
-                <a class="nav-item nav-link" href="/policies">Policies</a>
-                <a class="nav-item nav-link" href="/claims">Claims</a>
-                <a class="nav-item nav-link" href="/customers">Customers</a>
-                <a class="nav-item nav-link" href="/faqs">FAQs</a>
-                <a class="nav-item nav-link" href="/contact">Contact Us</a>
-                <!-- Add more navigation links as needed -->
+                <a class="nav-item {% if active_page == '/' %}active{% endif %}" href="/">Home</a>
+                <a class="nav-item {% if active_page == '/policies' %}active{% endif %}" href="/policies">Policies</a>
+                <a class="nav-item {% if active_page == '/partners' %}active{% endif %}" href="/partners">Partners</a>
+                <a class="nav-item {% if active_page == '/claims' %}active{% endif %}" href="/claims">Claims</a>
+                <a class="nav-item {% if active_page == '/customers' %}active{% endif %}" href="/customers">Customers</a>
+                <a class="nav-item {% if active_page == '/faqs' %}active{% endif %}" href="/faqs">FAQs</a>
+                <a class="nav-item {% if active_page == '/contact' %}active{% endif %}" href="/contact">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -47,7 +45,7 @@
     </div>
 
     <!-- Sticky Contact Us button -->
-    <a href="#" class="btn btn-outline-primary sticky-contact">
+    <a href="/contact" class="btn btn-outline-primary sticky-contact">
         <i class="fas fa-comment-alt"></i> Contact Us
     </a>
     <br><br>
@@ -55,41 +53,33 @@
     <footer class="footer mt-auto py-3">
         <div class="container text-center">
             <div class="row">
-                <div class="col-lg-4">
-                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Sanlam Logo" height="80">
-                    <p><i class="fas fa-phone-alt"></i> 021 947 9111</p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:life@sanlam.co.za"><span class="text">Email</span></a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps/place/Sanlam+Head+Office+Bellville/@-33.903576,18.640943,16z/data=!4m6!3m5!1s0x1dcc50523656ccff:0xea9a751271b13c3a!8m2!3d-33.9036861!4d18.6410284!16s%2Fg%2F11h0_d_81?entry=ttu"><span  class="text">Sanlam Head Office<br>2 Strand Road, Bellville</span></a></p>
+                <div class="col-lg-4 icon-size">
+                    <img class="logo-size" src="{{ url_for('static', filename='logo.png') }}" alt="Sanlam Logo"><br><br>
+                    <i class="fas fa-phone-alt"></i><span class="text">021 947 9111 </span>
+                    <i class="fas fa-envelope"></i> <a href="mailto:life@sanlam.co.za"><span class="text">Email</span></a></p>
                 </div>
                 <div class="col-lg-4">
                     <h5>Follow Us</h5>
-                    <a href="https://www.youtube.com/sanlam"><i class="fab fa-youtube fa-2x"></i></a>
-                    <a href="https://twitter.com/sanlam"><i class="fab fa-twitter fa-2x"></i></a>
-                    <a href="https://www.facebook.com/sanlamgroup"><i class="fab fa-facebook fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFSRRlKRQkTUQAAAY6LgZSI7HcXm4BX5D7mKP_UJTPA7FR5zcpLKCj1IYxS1wd6NmOj4ypA8XJNSjaaMOu70ExNzxxmbKwSdN7e-MtBAp_nGYwQMklXvRDEDBOPI45o3l9V5CQ=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F165844"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://www.instagram.com/Sanlam_Group/"><i class="fab fa-instagram fa-2x"></i></a>
+                    <div class="icon-style icon-size"><a href="https://www.youtube.com/sanlam"><i class="fab fa-youtube fa-2x"></i></a></div>
+                    <div class="icon-style icon-size"><a href="https://twitter.com/sanlam"><i class="fab fa-twitter fa-2x"></i></a></div>
+                    <div class="icon-style icon-size"><a href="https://www.facebook.com/sanlamgroup"><i class="fab fa-facebook fa-2x"></i></a></div>
+                    <div class="icon-style icon-size"><a href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQFSRRlKRQkTUQAAAY6LgZSI7HcXm4BX5D7mKP_UJTPA7FR5zcpLKCj1IYxS1wd6NmOj4ypA8XJNSjaaMOu70ExNzxxmbKwSdN7e-MtBAp_nGYwQMklXvRDEDBOPI45o3l9V5CQ=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F165844"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                    <div class="icon-style icon-size"><a href="https://www.instagram.com/Sanlam_Group/"><i class="fab fa-instagram fa-2x"></i></a></div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4  icon-size">
                     <h5>Download Our App</h5>
                     <a href="https://play.google.com/store/apps/details?id=za.co.sanlam.mobile"><span class="text">Google Play Store</span> <i class="fab fa-google-play fa-2x"></i></a>
                     <a href="https://apps.apple.com/za/app/sanlam-portfolio/id1403839427"><span class="text">iOS App Store</span> <i class="fab fa-app-store-ios fa-2x"></i></a>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-lg-4 offset-lg-4">
-                    <h5>Quick Links</h5>
-                    <a href="#" class="quick-link">About</a><br>
-                    <a href="#" class="quick-link">Policies</a><br>
-                </div> -->
-            </div>
-            <hr class="my-4">
-            <p>&copy; 2024 Insurance Policy Management System</p>
-        </div>
+        </div> 
+        <hr class="my-4">
+        <p class="text">InsureWheels Comparative Services (Pty) Ltd is an authorised financial service provider. FSP number: 16357. Located at 123 Main Street, Cape Town, South Africa, 2280. All rights reserved.</p>
+        <p class="text">InsureWheels &copy; 2024</p>
     </footer>
     
     <!-- Bootstrap JavaScript and jQuery from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Additional scripts can be included here if needed -->
 </body>
 </html>
