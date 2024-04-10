@@ -1,32 +1,128 @@
-from flask import Blueprint, render_template
+import uuid
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
-from extension import db
-from models.user import User
+from wtforms import (
+    StringField,
+    PasswordField,
+    SubmitField,
+    RadioField,
+    SelectField,
+    TextAreaField,
+    ValidationError,
+)
+from wtforms.validators import (
+    DataRequired,
+    Email,
+    EqualTo,
+    Length,
+    # Regexp
+)
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, logout_user
+
+from models.users import User
+from extensions import db
 
 users_bp = Blueprint("users_bp", __name__)
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField(
-        "Username",
+    first_name = StringField(
+        "First Name",
         validators=[
-            InputRequired(message="Username is required"),
-            Length(min=6, message="Username must be at least 6 characters long"),
+            DataRequired(),
+            Length(
+                min=2,
+                max=50,
+                message="First name must be between 2 and 50 characters long",
+            ),
+        ],
+    )
+    surname = StringField(
+        "Surname",
+        validators=[
+            DataRequired(),
+            Length(
+                min=2,
+                max=50,
+                message="Surname must be between 2 and 50 characters long",
+            ),
+        ],
+    )
+    dob_day = SelectField(
+        "Day",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(str(i), str(i)) for i in range(1, 32)],
+    )
+    dob_month = SelectField(
+        "Month",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(str(i), str(i)) for i in range(1, 13)],
+    )
+    dob_year = SelectField(
+        "Year",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(str(i), str(i)) for i in range(1920, 2023)],
+    )
+    gender = RadioField(
+        "Gender",
+        choices=[("male", "Male"), ("female", "Female")],
+        validators=[DataRequired()],
+    )
+    marital_status = RadioField(
+        "Marital Status",
+        choices=[
+            ("single", "Single"),
+            ("cohabitating", "Co-habitating"),
+            ("married", "Married"),
+            ("divorced", "Divorced"),
+            ("separated", "Separated"),
+            ("widowed", "Widowed"),
+        ],
+        validators=[DataRequired()],
+    )
+    address = TextAreaField(
+        "Address",
+        validators=[
+            DataRequired(),
+            Length(
+                min=10,
+                max=200,
+                message="Address must be between 10 and 200 characters long",
+            ),
         ],
     )
     email = StringField(
         "Email",
         validators=[
-            InputRequired(message="Email is required"),
+            DataRequired(),
             Email(message="Invalid email address"),
+            Length(max=100, message="Email must be less than 100 characters"),
+        ],
+    )
+    cellphone = StringField(
+        "Cellphone Number",
+        # validators=[
+        #     DataRequired(),
+        #     Regexp(
+        #         r"^\+?1?\d{9,15}$",
+        #         message="Invalid phone number format. Please enter a valid phone number.",
+        #     ),
+        # ],
+        validators=[
+            DataRequired(),
+            Length(
+                min=10, max=10, message="Cellphone number must be 10 characters only"
+            ),
         ],
     )
     password = PasswordField(
         "Password",
         validators=[
-            InputRequired(message="Password is required"),
+            DataRequired(),
             Length(
                 min=8,
                 max=12,
@@ -37,33 +133,34 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField(
         "Confirm Password",
         validators=[
-            InputRequired(message="Please confirm your password"),
+            DataRequired(),
             EqualTo("password", message="Passwords must match"),
         ],
     )
-    submit = SubmitField("Sign Up")
-
-    def validate_username(self, field):
-        if User.query.filter_by(username=field.data).first():
-            raise ValidationError("Username is already taken")
+    submit = SubmitField("Register")
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError("Email is already registered")
 
+    def validate_cellphone(self, field):
+        if User.query.filter_by(cellphone=field.data).first():
+            raise ValidationError("Cellphone is already registered")
+
 
 class LoginForm(FlaskForm):
-    username = StringField(
-        "Username",
+    email = StringField(
+        "Email",
         validators=[
-            InputRequired(message="Username is required"),
-            Length(min=6, message="Username must be at least 6 characters long"),
+            DataRequired(),
+            Email(message="Invalid email address"),
+            Length(max=100, message="Email must be less than 100 characters"),
         ],
     )
     password = PasswordField(
         "Password",
         validators=[
-            InputRequired(message="Password is required"),
+            DataRequired(),
             Length(
                 min=8,
                 max=12,
@@ -73,33 +170,49 @@ class LoginForm(FlaskForm):
     )
     submit = SubmitField("Log In")
 
-    def validate_username(self, field):
-        user = User.query.filter_by(username=field.data).first()
-        if not user:
-            raise ValidationError("Username does not exist")
+    def validate_email(self, field):
+        user_from_db = User.query.filter_by(email=field.data).first()
+        if not user_from_db:
+            raise ValidationError("Email does not exist")
 
     def validate_password(self, field):
-        user = User.query.filter_by(username=self.username.data).first()
-        if user and user.password != field.data:
-            raise ValidationError("Incorrect password")
+        user_from_db = User.query.filter_by(email=self.email.data).first()
+        if user_from_db:
+            form_password = field.data
+            print(user_from_db, form_password)
+            if not check_password_hash(user_from_db.password, form_password):
+                raise ValidationError("Invalid password")
 
 
 @users_bp.route("/register", methods=["GET", "POST"])
 def register_page():
     form = RegistrationForm()
     if form.validate_on_submit():
+        password_hash = generate_password_hash(form.password.data)
+        print(form.password.data, password_hash)
+
+        dob = f"{str(form.dob_year.data)}-{str(form.dob_month.data)}-{str(form.dob_day.data)}"
+
         new_user = User(
-            username=form.username.data,
+            id=str(uuid.uuid4()),
+            first_name=form.first_name.data,
+            surname=form.surname.data,
+            date_of_birth=dob,
+            gender=form.gender.data,
+            marital_status=form.marital_status.data,
+            address=form.address.data,
             email=form.email.data,
-            password=form.password.data,
+            cellphone=form.cellphone.data,
+            password=password_hash,
         )
         try:
             db.session.add(new_user)
             db.session.commit()
-            return "<h2>User has been registered</h2>", 201
+            flash("User successfully registered", "success")  # confirmation message
+            return redirect(url_for("users_bp.login_page")), 200
         except Exception as e:
             db.session.rollback()
-            return f"<h2>Error happened {str(e)}</h2>", 500
+            flash(f"Error occurred: {str(e)}", "error")  #  error message
     return render_template("register.html", form=form)
 
 
@@ -107,6 +220,19 @@ def register_page():
 def login_page():
     form = LoginForm()
     if form.validate_on_submit():
-        # Perform login logic here
-        return "<h2>Logged in successfully</h2>", 200
+        user_from_db = User.query.filter_by(email=form.email.data).first()  # added
+        if user_from_db and user_from_db.check_password(form.password.data):
+            login_user(user_from_db)  # token is issued - (cookies) stored browser
+            print("hi")
+            flash("Logged in successfully", "success")
+            return redirect(url_for("home_bp.index_page"))  # Redirect to home page
+        else:
+            flash("Invalid email or password", "error")
     return render_template("login.html", form=form)
+
+
+@users_bp.route("/logout")
+def logout_page():
+    logout_user()
+    flash("Logged out successfully", "success")
+    return redirect(url_for("index_page"))

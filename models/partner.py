@@ -1,4 +1,4 @@
-from extension import db
+from extensions import db
 
 
 class Partner(db.Model):

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email
-from extension import db
+from extensions import db
 from models.contact import Contact
 
 contact_bp = Blueprint("contact_bp", __name__)

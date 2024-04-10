@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 import uuid
-from extension import db
+from extensions import db
 
 
 class Contact(db.Model):

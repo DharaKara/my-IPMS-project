@@ -5,7 +5,7 @@
     z-index: 1000; /* Ensure it's above other content */
 }
 
-.quick-link, .fab, .fas, .text {
+.quick-link, .fab, .text {
     color: white;
     text-align: center;
 }
@@ -83,4 +83,29 @@ footer .col-lg-4 a:not(:last-child) {
     font-weight: bold; 
 } */
 
+/* CSS styles for the user icon and toggler button */
+.user-icon,
+.navbar-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    color: #333; /* Change icon color for better visibility */
+    padding: 0.25rem 0.75rem;
+}
 
+.user-icon {
+    font-size: 30px;
+}
+
+/* CSS styles for the toggler icon */
+.navbar-toggler-icon {
+    font-size: 1.5rem;
+}
+
+/* CSS styles for the dropdown menu */
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}

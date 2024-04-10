@@ -1,5 +1,5 @@
 import uuid
-from extension import db
+from extensions import db
 
 # class Policy(db.Model):
 #     __tablename__ = "policies"
