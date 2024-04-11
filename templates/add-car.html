@@ -6,13 +6,13 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h2>Add Car</h2>
+            <h2>Add Car Details</h2>
         </div>
         <div class="card-body">
             <form method="post" action="{{ url_for('cars_bp.add_car') }}">
                 {{ form.hidden_tag() }}
                 <div class="form-group row">
-                    <label for="year" class="col-sm-3 col-form-label">Year:</label>
+                    <label for="year" class="col-sm-3 col-form-label">Vehicle Year:</label>
                     <div class="col-sm-9">  
                         {{ form.year(class="form-control") }}
                     </div>
@@ -20,39 +20,31 @@
                 <div class="form-group row">
                     <label for="make" class="col-sm-3 col-form-label">Make:</label>
                     <div class="col-sm-9">
-                        {{ form.make(class="form-control", placeholder="Enter make (e.g., BMW)") }}
+                        {{ form.make(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="model" class="col-sm-3 col-form-label">Model:</label>
                     <div class="col-sm-9">
-                        {{ form.model(class="form-control", placeholder="Enter model (e.g., 3 Series)") }}
+                        {{ form.model(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-3 col-form-label">Description:</label>
                     <div class="col-sm-9">
-                        {{ form.description(class="form-control", placeholder="Enter description (e.g., 320i Sedan)") }}
+                        {{ form.description(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="coverage_type" class="col-sm-3 col-form-label">Coverage Type:</label>
+                    <label for="coverage" class="col-sm-3 col-form-label">Coverage Type:</label>
                     <div class="col-sm-9">
-                        <select class="form-control" id="coverage_type" name="coverage_type">
-                            {% for ct_id, ct_name in form.coverage_type.choices %}
-                            <option value="{{ ct_id }}">{{ ct_name }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form.coverage(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="parking_location" class="col-sm-3 col-form-label">Parking Location:</label>
                     <div class="col-sm-9">
-                        <select class="form-control" id="parking_location" name="parking_location">
-                            {% for pl_id, pl_name in form.parking_location.choices %}
-                            <option value="{{ pl_id }}">{{ pl_name }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form.parking_location(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group row mt-4">
