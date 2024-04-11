@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     cellphone = db.Column(db.String(15), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
+    vehicles = db.relationship("Vehicle", backref="owner", lazy=True)
 
     def to_dict(self):
         return {

@@ -5,6 +5,5 @@ home_bp = Blueprint("home_bp", __name__)
 
 
 @home_bp.route("/")
-@login_required
 def index_page():
     return render_template("index.html")

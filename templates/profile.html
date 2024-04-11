@@ -1,0 +1,97 @@
+<!-- profile_edit.html -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile - Insurance Policy Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Profile</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('users_bp.edit_profile') }}" method="POST">
+                        {{ form.hidden_tag() }}
+                        <!-- Render form fields here -->
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            {{ form.first_name(class="form-control", id="first_name") }}
+                            {% for error in form.first_name.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            {{ form.surname(class="form-control", id="surname") }}
+                            {% for error in form.surname.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <div class="row">
+                                <div class="col">
+                                    {{ form.dob_day(class="form-control", id="dob_day") }}
+                                    {% for error in form.dob_day.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                <div class="col">
+                                    {{ form.dob_month(class="form-control", id="dob_month") }}
+                                    {% for error in form.dob_month.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                <div class="col">
+                                    {{ form.dob_year(class="form-control", id="dob_year") }}
+                                    {% for error in form.dob_year.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            {{ form.gender(class="form-control", id="gender") }}
+                            {% for error in form.gender.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="marital_status">Marital Status</label>
+                            {{ form.marital_status(class="form-control", id="marital_status") }}
+                            {% for error in form.marital_status.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            {{ form.address(class="form-control", id="address") }}
+                            {% for error in form.address.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            {{ form.email(class="form-control", id="email") }}
+                            {% for error in form.email.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="cellphone">Cellphone Number</label>
+                            {{ form.cellphone(class="form-control", id="cellphone") }}
+                            {% for error in form.cellphone.errors %}
+                            <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

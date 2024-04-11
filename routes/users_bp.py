@@ -1,6 +1,9 @@
 import uuid
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, logout_user, current_user, login_required
 from flask_wtf import FlaskForm
+from datetime import datetime
 from wtforms import (
     StringField,
     PasswordField,
@@ -15,10 +18,9 @@ from wtforms.validators import (
     Email,
     EqualTo,
     Length,
+    Optional,
     # Regexp
 )
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user
 
 from models.users import User
 from extensions import db
@@ -179,9 +181,66 @@ class LoginForm(FlaskForm):
         user_from_db = User.query.filter_by(email=self.email.data).first()
         if user_from_db:
             form_password = field.data
-            print(user_from_db, form_password)
-            if not check_password_hash(user_from_db.password, form_password):
+            user_db_data = user_from_db.to_dict()
+            print(user_db_data, form_password)
+            if not check_password_hash(user_db_data["password"], form_password):
                 raise ValidationError("Invalid password")
+
+
+class ProfileEditForm(FlaskForm):
+    first_name = StringField(
+        "First Name", validators=[DataRequired(), Length(min=2, max=50)]
+    )
+    surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=50)])
+    dob_day = SelectField(
+        "Day",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(i, i) for i in range(1, 32)],
+    )
+    dob_month = SelectField(
+        "Month",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(i, i) for i in range(1, 13)],
+    )
+    dob_year = SelectField(
+        "Year",
+        coerce=int,
+        validators=[DataRequired()],
+        choices=[(i, i) for i in range(1920, 2023)],
+    )
+    gender = SelectField(
+        "Gender",
+        choices=[("male", "Male"), ("female", "Female")],
+        validators=[DataRequired()],
+    )
+    marital_status = SelectField(
+        "Marital Status",
+        choices=[
+            ("single", "Single"),
+            ("cohabitating", "Co-habitating"),
+            ("married", "Married"),
+            ("divorced", "Divorced"),
+            ("separated", "Separated"),
+            ("widowed", "Widowed"),
+        ],
+        validators=[DataRequired()],
+    )
+    address = TextAreaField(
+        "Address", validators=[DataRequired(), Length(min=10, max=200)]
+    )
+    email = StringField("Email", validators=[DataRequired()])
+    cellphone = StringField(
+        "Cellphone Number", validators=[DataRequired(), Length(min=10, max=10)]
+    )
+    submit = SubmitField("Save Changes")
+
+    def process_formdata(self, valuelist):
+        super().process_formdata(valuelist)
+        self.dob_day.choices = [(i, i) for i in range(1, 32)]
+        self.dob_month.choices = [(i, i) for i in range(1, 13)]
+        self.dob_year.choices = [(i, i) for i in range(1920, 2023)]
 
 
 @users_bp.route("/register", methods=["GET", "POST"])
@@ -221,18 +280,41 @@ def login_page():
     form = LoginForm()
     if form.validate_on_submit():
         user_from_db = User.query.filter_by(email=form.email.data).first()  # added
-        if user_from_db and user_from_db.check_password(form.password.data):
-            login_user(user_from_db)  # token is issued - (cookies) stored browser
-            print("hi")
-            flash("Logged in successfully", "success")
-            return redirect(url_for("home_bp.index_page"))  # Redirect to home page
-        else:
-            flash("Invalid email or password", "error")
+        login_user(user_from_db)  # token is issued - (cookies) stored browser
+        print("hi")
+        flash("Logged in successfully", "success")
+        return redirect(url_for("home_bp.index_page"))  # Redirect to home page
+    flash("Invalid email or password", "error")
     return render_template("login.html", form=form)
 
 
+@users_bp.route("/profile", methods=["GET", "POST"])
+@login_required  # Ensure that the user is logged in to access this route
+def edit_profile():
+    form = ProfileEditForm(obj=current_user)  # Populate form with current user's data
+    if form.validate_on_submit():
+        # Update user's profile only if data has changed
+        for field in form:
+            if (
+                field.name != "submit"
+                and getattr(current_user, field.name) != field.data
+            ):
+                setattr(current_user, field.name, field.data)
+
+        try:
+            db.session.commit()
+            flash("Profile updated successfully", "success")
+            return redirect(url_for("users_bp.profile"))
+        except Exception as e:
+            db.session.rollback()
+            flash(f"Error occurred: {str(e)}", "error")
+
+    return render_template("profile.html", form=form)
+
+
 @users_bp.route("/logout")
+@login_required
 def logout_page():
     logout_user()
     flash("Logged out successfully", "success")
-    return redirect(url_for("index_page"))
+    return redirect(url_for("home_bp.index_page"))

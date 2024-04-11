@@ -12,6 +12,7 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ url_for('users_bp.login_page')}}">
+                        {{form.hidden_tag()}} 
                         <!-- Email Field -->
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -27,9 +28,10 @@
                             {% for error in form.password.errors %}
                             <small class="text-danger">{{ error }}</small>
                             {% endfor %}
-                        </div>
+                        </div><br>
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Log In</button>
+                        <button type="submit" class="btn btn-primary">Log In</button><br><br>
+                        <label class="links">No account? <a href="{{ url_for('users_bp.register_page')}}">Register</a></label>
                     </form>
                 </div>
             </div>

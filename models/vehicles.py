@@ -1,6 +1,5 @@
 import uuid
 from extensions import db
-from sqlalchemy.orm import relationship
 
 
 class Vehicle(db.Model):
@@ -11,7 +10,12 @@ class Vehicle(db.Model):
     model = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    user = relationship("User", back_populates="vehicles")
+    coverage_id = db.Column(
+        db.String(36), db.ForeignKey("coverage_types.id"), nullable=False
+    )
+    parking_location_id = db.Column(
+        db.String(36), db.ForeignKey("parking_locations.id"), nullable=False
+    )
 
     def to_dict(self):
         return {
@@ -21,4 +25,6 @@ class Vehicle(db.Model):
             "model": self.model,
             "description": self.description,
             "user_id": self.user_id,
+            "coverage_id": self.coverage_id,
+            "parking_location_id": self.parking_location_id,
         }
