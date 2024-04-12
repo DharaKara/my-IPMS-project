@@ -3,62 +3,60 @@
 {% block title %}Car{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mt-5">Enter Driver Details</h2>
-    <p class="lead">Please fill out the form below:</p>
-    <div class="card mt-4">
-        <div class="card-body">
-            <form method="post" action="{{ url_for('cars_bp.add_driver') }}">
-                <div class="form-group">
-                    <label for="licence-type">What type of license do you have?</label>
-                    <select class="form-control" id="licence-type" name="licence-type">
-                        <option value="">Please select Licence Type</option>
-                        <option value="RSA Driver Licence">RSA Driver Licence</option>
-                        <option value="RSA Leaner Licence">RSA Leaner Licence</option>
-                        <option value="International Driver Licence">International Driver Licence</option>
-                    </select>
+<h2 class="mt-5">Enter Driver Details</h2>
+<p class="lead">Please fill out the form below:</p>
+<div class="card mt-4">
+    <div class="card-body">
+        <form method="post" action="{{ url_for('cars_bp.add_driver') }}">
+            <div class="form-group">
+                <label for="licence-type">What type of license do you have?</label>
+                <select class="form-control" id="licence-type" name="licence-type">
+                    <option value="">Please select Licence Type</option>
+                    <option value="RSA Driver Licence">RSA Driver Licence</option>
+                    <option value="RSA Leaner Licence">RSA Leaner Licence</option>
+                    <option value="International Driver Licence">International Driver Licence</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="issue-date">When was your license first issued?</label>
+                <div class="row">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <select class="form-control" id="month" name="month">
+                            <option value="">MM</option>
+                            {% for month in range(1, 13) %}
+                            <option value="{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control" id="year" name="year">
+                            <option value="">YYYY</option>
+                            {% for year in range(1920, 2023) %}
+                            <option value="{{ year }}">{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="issue-date">When was your license first issued?</label>
-                    <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0">
-                            <select class="form-control" id="month" name="month">
-                                <option value="">MM</option>
-                                {% for month in range(1, 13) %}
-                                <option value="{{ month }}">{{ month }}</option>
-                                {% endfor %}
-                            </select>
+            </div>
+            <div class="form-group">
+                <label>Do you currently have comprehensive car insurance where you are noted as a regular driver?</label>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="car-ins" id="yes" value="yes">
+                            <label class="form-check-label" for="yes">Yes</label>
                         </div>
-                        <div class="col-md-6">
-                            <select class="form-control" id="year" name="year">
-                                <option value="">YYYY</option>
-                                {% for year in range(1920, 2023) %}
-                                <option value="{{ year }}">{{ year }}</option>
-                                {% endfor %}
-                            </select>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="car-ins" id="no" value="no">
+                            <label class="form-check-label" for="no">No</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Do you currently have comprehensive car insurance where you are noted as a regular driver?</label>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 mb-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="car-ins" id="yes" value="yes">
-                                <label class="form-check-label" for="yes">Yes</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="car-ins" id="no" value="no">
-                                <label class="form-check-label" for="no">No</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Get Quote <i class="fas fa-chevron-circle-right"></i></button>
-            </form>
-        </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Quote <i class="fas fa-chevron-circle-right"></i></button>
+        </form>
     </div>
 </div>
 {% endblock %}

@@ -3,203 +3,201 @@
 {% block title %}Register - Insurance Policy Management System{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Register</h3>
-                </div>
-                <div class="card-body">
-                    <p>Please fill out the form below to ensure that we give you accurate quotes.</p>
-                    <form action="{{ url_for('users_bp.register_page')}}" method="POST">
-                        {{form.hidden_tag()}}
-                        <!-- Include CSRF token for security -->
-                        
-                        <!-- First Name Field -->
-                        <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your first name" autocomplete="off">
-                            {% for error in form.first_name.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Register</h3>
+            </div>
+            <div class="card-body">
+                <p>Please fill out the form below to ensure that we give you accurate quotes.</p>
+                <form action="{{ url_for('users_bp.register_page')}}" method="POST">
+                    {{form.hidden_tag()}}
+                    <!-- Include CSRF token for security -->
+                    
+                    <!-- First Name Field -->
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your first name" autocomplete="off">
+                        {% for error in form.first_name.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Surname Field -->
-                        <div class="form-group">
-                            <label for="surname">Surname</label>
-                            <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter your surname" autocomplete="off">
-                            {% for error in form.surname.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+                    <!-- Surname Field -->
+                    <div class="form-group">
+                        <label for="surname">Surname</label>
+                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter your surname" autocomplete="off">
+                        {% for error in form.surname.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Date of Birth Fields -->
-                        <div class="form-group">
-                            <label for="dob_day">Date of Birth</label>
-                            <div class="row">
-                                <div class="col">
-                                    <select class="form-control" name="dob_day" id="dob_day" autocomplete="off">
-                                        <option value="">Day</option>
-                                        {% for day in range(1, 32) %}
-                                        <option value="{{ day }}">{{ day }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <select class="form-control" name="dob_month" id="dob_month" autocomplete="off">
-                                        <option value="">Month</option>
-                                        {% for month in range(1, 13) %}
-                                        <option value="{{ month }}">{{ month }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <select class="form-control" name="dob_year" id="dob_year" autocomplete="off">
-                                        <option value="">Year</option>
-                                        {% for year in range(1920, 2023) %}
-                                        <option value="{{ year }}">{{ year }}</option>
-                                        {% endfor %}
-                                    </select>
+                    <!-- Date of Birth Fields -->
+                    <div class="form-group">
+                        <label for="dob_day">Date of Birth</label>
+                        <div class="row">
+                            <div class="col">
+                                <select class="form-control" name="dob_day" id="dob_day" autocomplete="off">
+                                    <option value="">Day</option>
+                                    {% for day in range(1, 32) %}
+                                    <option value="{{ day }}">{{ day }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" name="dob_month" id="dob_month" autocomplete="off">
+                                    <option value="">Month</option>
+                                    {% for month in range(1, 13) %}
+                                    <option value="{{ month }}">{{ month }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" name="dob_year" id="dob_year" autocomplete="off">
+                                    <option value="">Year</option>
+                                    {% for year in range(1920, 2023) %}
+                                    <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        {% for error in form.dob_day.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                        {% for error in form.dob_month.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                        {% for error in form.dob_year.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Gender Field -->
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div class="row">
+                            <!-- Single -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
                                 </div>
                             </div>
-                            {% for error in form.dob_day.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                            {% for error in form.dob_month.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                            {% for error in form.dob_year.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
-
-                        <!-- Gender Field -->
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <div class="row">
-                                <!-- Single -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                                        <label class="form-check-label" for="male">Male</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                                        <label class="form-check-label" for="female">Female</label>
-                                    </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
                                 </div>
                             </div>
-                            {% for error in form.gender.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
                         </div>
+                        {% for error in form.gender.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Marital Status Field -->
-                        <div class="form-group">
-                            <label>Marital Status</label>
-                            <div class="row">
-                                <!-- Single -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="single" value="single">
-                                        <label class="form-check-label" for="single">Single</label>
-                                    </div>
-                                </div>
-                                <!-- Co-habitating -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="cohabitating" value="cohabitating">
-                                        <label class="form-check-label" for="cohabitating">Co-habitating</label>
-                                    </div>
-                                </div>
-                                <!-- Married -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="married" value="married">
-                                        <label class="form-check-label" for="married">Married</label>
-                                    </div>
-                                </div>
-                                <!-- Divorced -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="divorced" value="divorced">
-                                        <label class="form-check-label" for="divorced">Divorced</label>
-                                    </div>
-                                </div>
-                                <!-- Separated -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="separated" value="separated">
-                                        <label class="form-check-label" for="separated">Separated</label>
-                                    </div>
-                                </div>
-                                <!-- Widowed -->
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="marital_status" id="widowed" value="widowed">
-                                        <label class="form-check-label" for="widowed">Widowed</label>
-                                    </div>
+                    <!-- Marital Status Field -->
+                    <div class="form-group">
+                        <label>Marital Status</label>
+                        <div class="row">
+                            <!-- Single -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="single" value="single">
+                                    <label class="form-check-label" for="single">Single</label>
                                 </div>
                             </div>
-                            {% for error in form.marital_status.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
+                            <!-- Co-habitating -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="cohabitating" value="cohabitating">
+                                    <label class="form-check-label" for="cohabitating">Co-habitating</label>
+                                </div>
+                            </div>
+                            <!-- Married -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="married" value="married">
+                                    <label class="form-check-label" for="married">Married</label>
+                                </div>
+                            </div>
+                            <!-- Divorced -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="divorced" value="divorced">
+                                    <label class="form-check-label" for="divorced">Divorced</label>
+                                </div>
+                            </div>
+                            <!-- Separated -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="separated" value="separated">
+                                    <label class="form-check-label" for="separated">Separated</label>
+                                </div>
+                            </div>
+                            <!-- Widowed -->
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="marital_status" id="widowed" value="widowed">
+                                    <label class="form-check-label" for="widowed">Widowed</label>
+                                </div>
+                            </div>
                         </div>
+                        {% for error in form.marital_status.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Address Field -->
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" autocomplete="off">
-                            {% for error in form.address.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+                    <!-- Address Field -->
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" autocomplete="off">
+                        {% for error in form.address.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Email Field -->
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" autocomplete="off">
-                            {% for error in form.email.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" autocomplete="off">
+                        {% for error in form.email.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Cellphone Number Field -->
-                        <div class="form-group">
-                            <label for="cellphone">Cellphone Number</label>
-                            <input type="tel" class="form-control" id="cellphone" name="cellphone" placeholder="Enter your cellphone number" autocomplete="off">
-                            {% for error in form.cellphone.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+                    <!-- Cellphone Number Field -->
+                    <div class="form-group">
+                        <label for="cellphone">Cellphone Number</label>
+                        <input type="tel" class="form-control" id="cellphone" name="cellphone" placeholder="Enter your cellphone number" autocomplete="off">
+                        {% for error in form.cellphone.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Password Field -->
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" autocomplete="off">
-                            {% for error in form.password.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" autocomplete="off">
+                        {% for error in form.password.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
 
-                        <!-- Confirm Password Field -->
-                        <div class="form-group">
-                            <label for="confirm_password">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" autocomplete="off">
-                            {% for error in form.confirm_password.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div><br>
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" autocomplete="off">
+                        {% for error in form.confirm_password.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div><br>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Register</button><br><br>
-                        <label class="links">Already have an account? <a href="{{ url_for('users_bp.login_page')}}">Log in</a></label>
-                    </form>
-                    </form>
-                </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Register</button><br><br>
+                    <label class="links">Already have an account? <a href="{{ url_for('users_bp.login_page')}}">Log in</a></label>
+                </form>
+                </form>
             </div>
         </div>
     </div>

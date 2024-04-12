@@ -3,37 +3,35 @@
 {% block title %}Login - Insurance Policy Management System{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Login</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ url_for('users_bp.login_page')}}">
-                        {{form.hidden_tag()}} 
-                        <!-- Email Field -->
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" autocomplete="off">
-                            {% for error in form.email.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div>
-                        <!-- Password Field -->
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" autocomplete="off">
-                            {% for error in form.password.errors %}
-                            <small class="text-danger">{{ error }}</small>
-                            {% endfor %}
-                        </div><br>
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Log In</button><br><br>
-                        <label class="links">No account? <a href="{{ url_for('users_bp.register_page')}}">Register</a></label>
-                    </form>
-                </div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Login</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('users_bp.login_page')}}">
+                    {{form.hidden_tag()}} 
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" autocomplete="off">
+                        {% for error in form.email.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" autocomplete="off">
+                        {% for error in form.password.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+                    </div><br>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Log In</button><br><br>
+                    <label class="links">No account? <a href="{{ url_for('users_bp.register_page')}}">Register</a></label>
+                </form>
             </div>
         </div>
     </div>

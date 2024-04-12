@@ -9,6 +9,7 @@ from models.vehicles import Vehicle
 from models.users import User
 from models.coverage_types import CoverageType
 from models.parking_locations import ParkingLocation
+from models.driver_details import DriverDetails
 
 # from models.partner import Partner
 # from models.customer import Customer

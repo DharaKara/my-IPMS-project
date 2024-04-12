@@ -1,111 +1,83 @@
+/* Sticky Contact Us button */
 .sticky-contact {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1000; /* Ensure it's above other content */
+    z-index: 1000;
 }
 
-.quick-link, .fab, .text {
-    color: white;
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+
+.footer .container {
     text-align: center;
 }
 
-.text {
+.footer .footer-text {
+    margin-bottom: 10px;
+}
+
+.footer hr {
+    border-top: 1px solid #dee2e6;
+}
+
+.footer p.text {
+    margin-bottom: 0;
     font-size: 14px;
+    color: #6c757d;
 }
 
-footer {
-    background-color: #0075C9;
-    text-align: center;
-    color: white;
+/* Social Icons */
+.social-icons a {
+    color: #007bff;
+    margin: 0 10px;
+    font-size: 24px;
 }
 
-.icon-style {
-    display: inline-flex; /* Display icons inline */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    border-radius: 50%;
-    background-color: black;
-    width: 34px;
-    height: 34px;
-    margin-right: 10px; /* Add space between icons */
+.social-icons a:hover {
+    color: #0056b3;
 }
 
-.logo-size {
-    width: 100px;
-    height: auto;
-    object-fit: cover;
-}
-.icon-size {
-    font-size: 12px; /* Adjust the size of icons */
+/* App Icons */
+.app-icons a {
+    color: #007bff;
+    margin: 0 10px;
+    font-size: 24px;
 }
 
-/* Add space between social media icons */
-footer .col-lg-4 a:not(:last-child) {
-    margin-right: 10px;
+.app-icons a:hover {
+    color: #0056b3;
 }
 
-/* Responsive Styling */
+/* Media Queries */
 @media (max-width: 768px) {
-    .icon-style {
-        width: 40px;
-        height: 40px;
-        font-size: 20px; /* Adjust icon size */
+    .navbar-brand img {
+        height: 50px;
+    }
+
+    .nav-item {
+        margin-right: 10px;
+    }
+
+    .user-icon {
+        font-size: 20px;
+    }
+
+    .footer .social-icons a,
+    .footer .app-icons a {
+        margin: 0 5px;
     }
 }
 
 @media (max-width: 576px) {
-    .icon-style {
-        width: 30px;
-        height: 30px;
-        font-size: 16px; /* Adjust icon size */
+    .navbar-brand img {
+        height: 40px;
     }
-}
 
-/* Default styles for navigation links */
-.navbar-nav .nav-item {
-    color: #333; /* Default text color */
-    text-decoration: none; /* Remove underline */
-    margin-right: 20px; /* Add spacing between links */
-    font-size: 18px; /* Set font size */
-    transition: color 0.3s; /* Smooth color transition */
-}
-
-/* Hover effect */
-.navbar-nav .nav-item:hover {
-    color: #007bff; /* Change text color on hover */
-}
-
-/* Active link styles 
-.navbar-nav .nav-item:active,
-.navbar-nav .nav-item:focus {
-    color: #007bff; 
-    font-weight: bold; 
-} */
-
-/* CSS styles for the user icon and toggler button */
-.user-icon,
-.navbar-toggler {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-    color: #333; /* Change icon color for better visibility */
-    padding: 0.25rem 0.75rem;
-}
-
-.user-icon {
-    font-size: 30px;
-}
-
-/* CSS styles for the toggler icon */
-.navbar-toggler-icon {
-    font-size: 1.5rem;
-}
-
-/* CSS styles for the dropdown menu */
-.dropdown-menu-right {
-    right: 0;
-    left: auto;
+    .user-icon {
+        font-size: 18px;
+    }
 }
