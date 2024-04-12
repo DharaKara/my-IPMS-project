@@ -1,70 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Information</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
+{% extends 'base.html' %}
+
+{% block title %}Claims - Insurance Policy Management System{% endblock %}
+
+{% block style %}
+<style>
     .car-year {
-      font-size: 24px;
-      color: #007bff;
+      font-size: 16px;
+      color: gray;
       font-weight: bold;
     }
     .car-model {
-      font-size: 18px;
-      color: #28a745;
+      font-size: 24px;
+      color: #007bff;
     }
     .car-make {
       font-size: 16px;
       color: #6c757d;
     }
-  </style>
-</head>
-<body>
+    .card-img-left {
+        width: 150px;
+        height: auto;
+        object-fit: cover;
+        margin-right: 30px; 
+    }
+    .car-info {
+        font-weight: bold;
+    }
+    .car-icons {
+        color: gray;
+        font-size: 16px;
+    }
+    .car-icons i:not(:last-child) {
+        margin-right: 10px; /* Adding margin-right to all icons except the last one */
+    }
+</style>
+{% endblock %}
 
+{% block content %}
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-start">
+        <div class="card-body d-flex align-items-center">
+          <img src="{{ url_for('static', filename='car.jpg') }}" class="card-img-left" alt="Car Image">
+          <div class="ms-auto d-flex justify-content-between w-100"> <!-- Adjusted div -->
             <div>
-              <span class="text-end me-2">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash"></i>
-              </span>
               <h5 class="card-title car-year">2002</h5>
-            </div>
-            <div>
               <h5 class="card-title car-model">MERCEDES BENZ C 200K CLASSIC</h5>
+              <p><span class="car-info">Parked in:</span> Locked Garage <br> <span class="car-info">Cover type:</span> Third Party Fire and Theft</p> <!-- Bolded words -->
+            </div>
+            <div class="car-icons d-flex"> <!-- Ensuring icons are displayed inline -->
+              <i class="fas fa-edit me-2"></i>
+              <i class="fas fa-trash"></i>
             </div>
           </div>
         </div>
-        <img src="https://via.placeholder.com/150" class="card-img-bottom" alt="Car Image">
       </div>
     </div>
   </div>
 
   <div class="row mt-3">
     <div class="col-md-6">
-      <a href="#" class="btn btn-primary">
+      <a href="{{ url_for('cars_bp.add_car') }}" class="text-primary">
         <i class="fas fa-plus-circle"></i> Add another car
       </a>
     </div>
+  </div>
+  <br>
+  <div class="row mt-3">
     <div class="col-md-6 text-end">
-      <button class="btn btn-secondary">
-        <i class="fas fa-info-circle"></i> Driver Information
-      </button>
+        <a href="{{ url_for('cars_bp.add_car') }}" class="btn btn-secondary">
+            Driver Information <i class="fas fa-chevron-circle-right"></i>
+        </a>
     </div>
   </div>
 </div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}
