@@ -2,6 +2,8 @@ import uuid
 from flask import Blueprint, render_template, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
+from models.users import User
+from extension import db
 from flask_wtf import FlaskForm
 from wtforms import (
     StringField,
@@ -17,12 +19,8 @@ from wtforms.validators import (
     Email,
     EqualTo,
     Length,
-    Optional,
     # Regexp
 )
-
-from models.users import User
-from extensions import db
 
 users_bp = Blueprint("users_bp", __name__)
 
@@ -282,7 +280,7 @@ def login_page():
         login_user(user_from_db)  # token is issued - (cookies) stored browser
         print("hi")
         flash("Logged in successfully", "success")
-        return redirect(url_for("home_bp.index_page"))  # Redirect to home page
+        return redirect(url_for("cars_bp.add_car"))  # Redirect to home page
     flash("Invalid email or password", "error")
     return render_template("login.html", form=form)
 

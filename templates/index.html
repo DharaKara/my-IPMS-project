@@ -1,63 +1,84 @@
 {% extends 'base.html' %}
-
 {% block title %}Vehicle Insurance{% endblock %}
 
 {% block style %}
 <style>
+/* Add your custom CSS styles here */
+
+/* Container styles */
+.container {
+    padding: 20px; /* Add padding to the container */
+}
+
+/* Jumbotron styles */
+.jumbotron {
+    text-align: center;
+    background-color: #007bff; /* Change background color */
+    color: #fff; /* Change text color */
+    border-radius: 10px; /* Add border radius */
+    padding: 40px; /* Add padding */
+    margin-bottom: 30px; /* Add margin bottom */
+}
+
+/* Table styles */
+.table {
+    background-color: #f8f9fa; /* Change background color */
+    border-radius: 10px; /* Add border radius */
+    padding: 20px; /* Add padding */
+    margin-bottom: 30px; /* Add margin bottom */
+}
+
+/* Testimonial item styles */
+.testimonial-item {
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px; /* Add margin bottom */
+}
+
+.testimonial-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Carousel container styles */
+.carousel-container {
+    background-color: #007bff; /* Change background color */
+    padding: 30px;
+    border-radius: 10px; /* Add border radius */
+}
+
+/* Carousel control styles */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    background-color: rgba(0, 0, 0, 0.5); /* Change background color */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Change hover background color */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
     .card {
-        margin-bottom: 20px;
+        width: 100%; /* Adjust card width for smaller screens */
     }
-
-    .testimonial-item {
-        text-align: center;
-        padding: 20px;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-    }
-
-    .testimonial-item img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-bottom: 20px;
-    }
-
-    /* Set maximum width for the carousel container */
-    .carousel-container {
-        margin-top: 50px; /* Add space between containers */
-        background-color: skyblue;
-        padding: 30px;
-    }
-
-    /* Adjust carousel controls */
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5%;
-    }
-
-    /* Add hover effect to carousel controls */
-    .carousel-control-prev:hover,
-    .carousel-control-next:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .jumbotron {
-        text-align: center;
-    }
+}
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to InsureWheels</h1>
-            <p class="lead">At InsureWheels, we understand the importance of protecting your vehicle and your peace of mind. That's why we offer a range of comprehensive insurance solutions tailored to your needs. Whether you're looking for coverage against accidents, theft, fire, or third-party liabilities, we've got you covered. Our dedicated team is committed to providing exceptional service and ensuring that you have the protection you need when you need it most.</p>
-            <hr class="my-4">
-            <p>Explore our range of insurance options and experience the difference with InsureWheels today.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to InsureWheels</h1>
+        <p class="lead">At InsureWheels, we understand the importance of protecting your vehicle and your peace of mind. That's why we offer a range of comprehensive insurance solutions tailored to your needs. Whether you're looking for coverage against accidents, theft, fire, or third-party liabilities, we've got you covered.</p>
+        <a class="btn btn-primary btn-lg" href="{{url_for('users_bp.register_page')}}" role="button">Get a Quote Now</a>
     </div>
 
     <h2 class="text-center my-4">Types of Vehicle Insurance</h2>    
@@ -81,45 +102,6 @@
             </tr>
         </tbody>
     </table>
-
-    <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#comprehensiveBody">
-            Comprehensive Car Insurance
-            <i class="fas fa-plus float-right"></i>
-        </div>
-        <div id="comprehensiveBody" class="collapse">
-            <div class="card-body">
-                <p>This provides cover for just about any form of financial loss related to your vehicle, including car accidents, thefts, hijackings, fire damage, natural disasters, and damage to someone else's car.</p>
-                <a href="#">Learn More About Comprehensive Car Insurance</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#thirdpartyfiretheftBody">
-            Third Party, Fire & Theft Insurance
-            <i class="fas fa-plus float-right"></i>
-        </div>
-        <div id="thirdpartyfiretheftBody" class="collapse">
-            <div class="card-body">
-                <p>If you don't want the full package of a comprehensive car insurance policy, but still want some form of cover, then third-party, fire & theft is a good option. This will pay for the accidental damage you might cause if you're at fault in a car accident. It will also protect you financially if your car is damaged by a fire, stolen, or if you're hijacked.</p>
-                <a href="#">Learn More About Third-Party, Fire & Theft Insurance</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header" data-toggle="collapse" data-target="#thirdpartyBody">
-            Third Party Car Insurance
-            <i class="fas fa-plus float-right"></i>
-        </div>
-        <div id="thirdpartyBody" class="collapse">
-            <div class="card-body">
-                <p>Want to be financially covered in case you cause an accident? This is the type of insurance you want. It will ensure that you aren't paying for repairs on someone else's car completely out of your own pocket if you cause a road accident.</p>
-                <a href="#">Learn More About Third-Party Car Insurance</a>
-            </div>
-        </div>
-    </div>
 
      <!-- Testimonials Section -->
      <h2 class="text-center my-4">Testimonials</h2>
@@ -191,8 +173,3 @@
      </div>
 </div>
 {% endblock %}
-
-
-    
-    
-

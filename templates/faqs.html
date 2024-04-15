@@ -3,96 +3,71 @@
 {% block style %}
 <style>
 /* Add your custom CSS styles here */
+
+/* FAQ card styling */
 .faq-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px; /* Add gap between FAQ cards */
 }
 
 .faq-card {
-    margin: 10px;
-    perspective: 1000px;
-    flex: 0 0 30%; /* Adjust width to fit 3 cards per row */
-    max-width: 30%; /* Adjust maximum width for responsiveness */
+    width: 30%; /* Adjust width for responsiveness */
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff; /* Add background color */
 }
 
+/* FAQ toggle animation */
 .faq-toggle {
-    width: 100%;
-    height: 200px; /* Adjust height as needed */
     position: relative;
     cursor: pointer;
-    transition: transform 0.5s;
-    transform-style: preserve-3d;
-}
-
-.faq-toggle .faq-answer {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backface-visibility: hidden;
-    overflow: auto; /* Add overflow auto to enable scrolling if content exceeds card height */
-}
-
-.faq-toggle:hover .faq-question {
-    transform: rotateY(-180deg);
 }
 
 .faq-toggle:hover .faq-answer {
-    display: block;
-    transform: rotateY(0deg);
+    max-height: 300px; /* Adjust maximum height of answer */
+    transition: max-height 0.5s ease; /* Add smooth transition */
 }
 
-.faq-question,
-.faq-answer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    padding: 10px; /* Add padding for content spacing */
-    box-sizing: border-box; /* Ensure padding is included in width and height */
-}
-
+/* FAQ question styling */
 .faq-question {
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ced4da;
-    transform: rotateY(0deg);
+    background-color: #007bff; /* Add background color */
+    color: #fff; /* Add text color */
+    padding: 20px;
+    transition: transform 0.5s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add bottom border */
 }
 
+/* FAQ answer styling */
 .faq-answer {
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    transform: rotateY(180deg);
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds card height */
+    background-color: #f8f9fa; /* Add background color */
+    padding: 20px;
+    max-height: 0; /* Hide answer by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease; /* Add smooth transition */
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
     .faq-card {
-        flex: 0 0 45%; /* Adjust width to fit 2 cards per row on smaller screens */
-        max-width: 45%; /* Adjust maximum width for responsiveness */
+        width: 45%; /* Adjust width for smaller screens */
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 576px) {
     .faq-card {
-        flex: 0 0 100%; /* Adjust width to fit 1 card per row on extra small screens */
-        max-width: 100%; /* Adjust maximum width for responsiveness */
+        width: 100%; /* Adjust width for extra small screens */
     }
 }
 </style>
 {% endblock %}
 
-
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2>Frequently Asked Questions</h2>
+        <div class="col-md-10 offset-md-1">
+            <h2 class="text-center mb-4">Frequently Asked Questions</h2>
             <div class="faq-container">
                 {% for faq in faqs %}
                 <div class="faq-card">

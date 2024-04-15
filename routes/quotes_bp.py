@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 
 # from models.vehicles import Vehicle
-from extensions import db
+from extension import db
 
 quotes_bp = Blueprint("quotes_bp", __name__)
 

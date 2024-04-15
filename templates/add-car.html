@@ -5,61 +5,44 @@
 {% block content %}
 <div class="card mt-5">
     <div class="card-body">
-        <form method="post" action="{{ url_for('cars_bp.add_car') }}">
+        <form method="post">
+            {{ form.hidden_tag() }}
             <h2>Car Details</h2>
             <div class="form-group row">
                 <label for="year" class="col-sm-3 col-form-label">Vehicle Year:</label>
                 <div class="col-sm-9">  
-                    <select class="form-control" id="year" name="year">
-                        <option value="">Year</option>
-                        {% for year in range(1920, 2023) %}
-                        <option value="{{ year }}">{{ year }}</option>
-                        {% endfor %}
-                    </select>
+                    {{ form.year(class="form-control", placeholder="Please select Year") }}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="make" class="col-sm-3 col-form-label">Make:</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="make" name="make" placeholder="Enter make (e.g., BMW)">
+                    {{ form.make(class="form-control", placeholder="Enter make (e.g., BMW)") }}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="model" class="col-sm-3 col-form-label">Model:</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="model" name="model" placeholder="Enter model (e.g., 3 Series)">
+                    {{ form.model(class="form-control", placeholder="Enter model (e.g., 3 Series)") }}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="description" class="col-sm-3 col-form-label">Description:</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter description (e.g., 320i Sedan)">
+                    {{ form.description(class="form-control", placeholder="Enter description (e.g., 320i Sedan)") }}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="coverage" class="col-sm-3 col-form-label">What type of cover do you require?</label>
                 <div class="col-sm-9">
-                    <select class="form-control" id="coverage" name="coverage">
-                        <option value="comprehensive">Comprehensive</option>
-                        <option value="third_party_fire_and_theft">Third Party Fire and Theft</option>
-                        <option value="third_party_only">Third Party Only</option>
-                    </select>
+                    {{ form.coverage(class="form-control", placeholder="Please select Cover Type") }}
                 </div>
             </div>
             <h2>Parking Details</h2>
             <div class="form-group row">
                 <label for="parking_location" class="col-sm-3 col-form-label">Where is your car parked overnight?</label>
                 <div class="col-sm-9">
-                    <select class="form-control" id="parking_location" name="parking_location">
-                        <option value="access_controlled_area">Access Controlled Area</option>
-                        <option value="basement_electronic_access">Basement - Electronic Access</option>
-                        <option value="basement_no_electronic_access">Basement - No Electronic Access</option>
-                        <option value="locked_garage">Locked Garage</option>
-                        <option value="on_pavement_or_in_street">On Pavement/In Street</option>
-                        <option value="open_parking_lot">Open Parking Lot</option>
-                        <option value="yard_no_locked_gates">Yard - No Locked Gates</option>
-                        <option value="yard_locked_gates">Yard - Locked Gates</option>
-                    </select>
+                    {{ form.parking_location(class="form-control", placeholder="Please select Parking Location") }}
                 </div>
             </div>
             <div class="form-group row mt-4">

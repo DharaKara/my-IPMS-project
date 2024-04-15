@@ -26,37 +26,53 @@
     .car-info {
         font-weight: bold;
     }
+
     .car-icons {
-        color: gray;
-        font-size: 16px;
-    }
+    color: gray;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    } 
+
     .car-icons i:not(:last-child) {
-        margin-right: 10px; /* Adding margin-right to all icons except the last one */
+        margin-right: 10px; 
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for vehicle in vehicles %}
+    <div class="col">
+      <div class="card position-relative">
         <div class="card-body d-flex align-items-center">
           <img src="{{ url_for('static', filename='car.jpg') }}" class="card-img-left" alt="Car Image">
-          <div class="ms-auto d-flex justify-content-between w-100"> <!-- Adjusted div -->
-            <div>
-              <h5 class="card-title car-year">2002</h5>
-              <h5 class="card-title car-model">MERCEDES BENZ C 200K CLASSIC</h5>
-              <p><span class="car-info">Parked in:</span> Locked Garage <br> <span class="car-info">Cover type:</span> Third Party Fire and Theft</p> <!-- Bolded words -->
-            </div>
-            <div class="car-icons d-flex"> <!-- Ensuring icons are displayed inline -->
-              <i class="fas fa-edit me-2"></i>
-              <i class="fas fa-trash"></i>
+          <div class="ms-auto">
+            <h5 class="card-title car-year">{{ vehicle.year }}</h5>
+            <h5 class="card-title car-model">{{ vehicle.make }} {{ vehicle.model }}</h5>
+            <p><span class="car-info">Parked in:</span> {{ vehicle.parking_location }} <br> <span class="car-info">Cover type:</span> {{ vehicle.coverage }}</p>
+            <div class="car-icons"> 
+              <a href="{{ url_for('cars_bp.edit_car', car_id=vehicle.id) }}" class="btn btn-link">
+                <i class="fas fa-edit me-2"></i>
+                <i class="fas fa-trash"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 
   <div class="row mt-3">

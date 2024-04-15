@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Car - Insurance Policy Management System{% endblock %}
+
+{% block style %}
+<style>
+select.form-select {
+    font-size: 16px;
+    color: #495057;
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Car</h2>
+    <form method="post">
+        <div class="form-group row">
+            <label for="year" class="col-sm-3 col-form-label">Year:</label>
+            <div class="col-sm-9">
+                <select class="form-select" id="year" name="year">
+                    {% for year in range(1920, 2023) %}
+                        <option value="{{ year }}" {% if car.year == year %} selected {% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="make" class="col-sm-3 col-form-label">Make:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="make" name="make" value="{{ car.make }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="model" class="col-sm-3 col-form-label">Model:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="model" name="model" value="{{ car.model }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-sm-3 col-form-label">Description:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="description" name="description" value="{{ car.description }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="coverage" class="col-sm-3 col-form-label">Coverage Type:</label>
+            <div class="col-sm-9">
+                <select class="form-select" id="coverage" name="coverage">
+                    {% for coverage_type in ['Comprehensive', 'Third Party Fire and Theft', 'Third Party Only'] %}
+                        <option value="{{ coverage_type }}" {% if car.coverage_id == coverage_type %} selected {% endif %}>{{ coverage_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>        
+        <div class="form-group row">
+            <label for="parking_location" class="col-sm-3 col-form-label">Parking Location:</label>
+            <div class="col-sm-9">
+                <select class="form-select" id="parking_location" name="parking_location">
+                    {% for location in ['Access Controlled Area', 'Basement - Electronic Access', 'Basement - No Electronic Access', 'Locked Garage', 'On Pavement/In Street', 'Open Parking Lot', 'Yard - No Locked Gates', 'Yard - Locked Gates'] %}
+                        <option value="{{ location }}" {% if car.parking_location_id == location %} selected {% endif %}>{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>        
+        <div class="form-group row mt-4">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

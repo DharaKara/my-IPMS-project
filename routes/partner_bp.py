@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template
-
-# from extension import db
 from models.partner import Partner
 from models.partner_detail import PartnerSection, Feature
 
@@ -23,9 +21,3 @@ def partner_details(partner_id):
     return render_template(
         "partner-details.html", partner=partner, partner_sections=partner_sections
     )
-
-
-# @partner_bp.route("/partner/id")
-# def partner_details():
-#     # partner = Partner.query.get_or_404(id)
-#     return render_template("partner-details.html")

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email
-from extensions import db
+from extension import db
 from models.contact import Contact
 
 contact_bp = Blueprint("contact_bp", __name__)
@@ -29,7 +29,7 @@ def contact():
             db.session.add(new_contact)
             db.session.commit()
             flash("Your message has been sent!", "success")
-            return redirect(url_for("contact_bp.contact"))
+            return redirect(url_for("home_bp.index_page"))
         except Exception as e:
             db.session.rollback()
             return f"<h2>Error occurred while sending message: {str(e)}</h2>", 500

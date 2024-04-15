@@ -1,5 +1,5 @@
 import uuid
-from extensions import db
+from extension import db
 
 
 class FAQS(db.Model):

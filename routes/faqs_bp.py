@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template
-
-# from extension import db
 from models.faqs import FAQS
 
 faqs_bp = Blueprint("faqs_bp", __name__)
