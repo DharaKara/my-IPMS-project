@@ -151,7 +151,7 @@ def add_driver():
             issue_month=form.month.data,
             issue_year=form.year.data,
             has_car_insurance=form.car_ins.data,
-            user_id="user_id",
+            user_id=current_user.id,
         )
         db.session.add(new_driver)
         db.session.commit()
