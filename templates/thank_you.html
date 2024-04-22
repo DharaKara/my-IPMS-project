@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Interest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ partner.image_link }}" alt="{{ partner.name }} Logo" class="logo">
+        <p class="message">Thank you for your interest in {{ partner.name }}. One of our highly experienced consultants will contact you shortly.</p>
+        <div class="content">
+            <p>At {{ partner.name }}, we are dedicated to providing exceptional service and tailored solutions to meet your insurance needs. Our team of experts is committed to helping you navigate the complexities of car insurance and find the perfect coverage for your vehicle.</p>
+            <p>Whether you're looking for comprehensive coverage, affordable premiums, or additional benefits, {{ partner.name }} has you covered. We offer a range of options designed to fit your budget and provide peace of mind on the road.</p>
+            <p>Feel free to explore our website for more information about our services, or contact us directly if you have any questions. We look forward to serving you!</p>
+        </div>
+        <button class="btn" onclick="window.location.href='/'">Back to Homepage</button>
+    </div>
+</body>
+</html>

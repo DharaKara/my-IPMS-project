@@ -278,7 +278,6 @@ def login_page():
     if form.validate_on_submit():
         user_from_db = User.query.filter_by(email=form.email.data).first()  # added
         login_user(user_from_db)  # token is issued - (cookies) stored browser
-        print("hi")
         flash("Logged in successfully", "success")
         return redirect(url_for("cars_bp.add_car"))  # Redirect to home page
     flash("Invalid email or password", "error")

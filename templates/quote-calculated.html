@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Compare Car Insurance Quotes - Insurance Policy Management System{% endblock %}
+
+{% block style %}
+<style>
+    .card {
+        max-width: 250px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .card-img {
+        max-width: 200px; 
+        aspect-ratio: 1/0.75; 
+        object-fit: cover;
+    }
+
+    .company-name {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .monthly-premium {
+        font-size: 14px;
+        color: hsl(0, 0%, 50%);
+        margin-bottom: 5px;
+    }
+
+    .excess {
+        font-size: 14px;
+        color: hsl(0, 0%, 50%);
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .highlight {
+        color: #007bff;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Compare Car Insurance Quotes</h2>
+    <div class="row mt-4">
+        <!-- Insurance Company Cards -->
+        {% for company in insurance_companies %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ company.logo_link }}" class="card-img" alt="company logo"><br><br>
+                    <p class="company-name">{{ company.name }}</p>
+                    <p class="monthly-premium">Starting from <span class="highlight">{{ company.monthly_premium }}</span> per month</p>
+                    <p class="excess">Excess: <span class="highlight">{{ company.excess }}</span></p>
+                    <form action="{{ url_for('quotes_bp.interested', partner_id=company.id) }}" method="post">
+                        <button class="btn btn-primary" type="submit">I'm Interested</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

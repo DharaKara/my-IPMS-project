@@ -65,8 +65,12 @@
             <div class="car-icons"> 
               <a href="{{ url_for('cars_bp.edit_car', car_id=vehicle.id) }}" class="btn btn-link">
                 <i class="fas fa-edit me-2"></i>
-                <i class="fas fa-trash"></i>
               </a>
+              <form action="{{ url_for('cars_bp.delete_car', car_id=vehicle.id) }}" method="post">
+                <button type="submit" class="btn btn-link">
+                    <i class="fas fa-trash"></i>
+                </button>
+              </form>
             </div>
           </div>
         </div>

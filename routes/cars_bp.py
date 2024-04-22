@@ -4,7 +4,7 @@ from models.driver_details import DriverDetails
 from models.vehicles import Vehicle
 from flask_wtf import FlaskForm
 from flask_login import login_required, current_user
-from wtforms import StringField, SelectField, BooleanField
+from wtforms import StringField, SelectField, RadioField, SubmitField
 from wtforms.validators import DataRequired
 
 cars_bp = Blueprint("cars_bp", __name__)
@@ -64,7 +64,12 @@ class AddDriverForm(FlaskForm):
         choices=[(str(year), str(year)) for year in range(1920, 2023)],
         validators=[DataRequired()],
     )
-    car_ins = BooleanField("Comprehensive Car Insurance")
+    car_ins = RadioField(
+        "Car Insurance",
+        choices=[("Yes", "Yes"), ("No", "No")],
+        validators=[DataRequired()],
+    )
+    submit = SubmitField("Get Quote")
 
 
 @cars_bp.route("/add_car", methods=["GET", "POST"])
@@ -146,15 +151,22 @@ def edit_car(car_id):
 def add_driver():
     form = AddDriverForm()
     if form.validate_on_submit():
-        new_driver = DriverDetails(
-            license_type=form.licence_type.data,
-            issue_month=form.month.data,
-            issue_year=form.year.data,
-            has_car_insurance=form.car_ins.data,
-            user_id=current_user.id,
-        )
-        db.session.add(new_driver)
-        db.session.commit()
-        flash("Driver details added successfully", "success")
-        return redirect(url_for("cars_bp.car_summary"))
+        try:
+            # Getting the selected value of car_ins
+            has_car_insurance = form.car_ins.data == "Yes"
+
+            new_driver = DriverDetails(
+                license_type=form.licence_type.data,
+                issue_month=form.month.data,
+                issue_year=form.year.data,
+                has_car_insurance=has_car_insurance,  # Using the selected value
+                user_id=current_user.id,
+            )
+            db.session.add(new_driver)
+            db.session.commit()
+            flash("Driver details added successfully", "success")
+            return redirect(url_for("quotes_bp.compare_quotes"))
+        except Exception as e:
+            flash(f"An error occurred while adding driver details: {str(e)}", "error")
+            db.session.rollback()
     return render_template("add-driver.html", form=form)

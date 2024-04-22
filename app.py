@@ -5,9 +5,14 @@ import os
 from models.users import User
 from flask_login import LoginManager
 from extension import db
+from models.quote import Quote
 from models.vehicles import Vehicle
-from models.users import User
+from models.partner import Partner
+from models.partner_detail import PartnerSection
+from models.faqs import FAQS
 from models.driver_details import DriverDetails
+from models.contact import Contact
+from models.ins_company import InsuranceCompany
 
 login_manager = LoginManager()
 
@@ -47,8 +52,7 @@ from routes.faqs_bp import faqs_bp
 from routes.home_bp import home_bp
 from routes.partner_bp import partner_bp
 from routes.cars_bp import cars_bp
-
-# from routes.quotes_bp import quotes_bp
+from routes.quotes_bp import quotes_bp
 
 app.register_blueprint(users_bp)
 app.register_blueprint(contact_bp)
@@ -56,4 +60,4 @@ app.register_blueprint(faqs_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(partner_bp)
 app.register_blueprint(cars_bp)
-# app.register_blueprint(quotes_bp)
+app.register_blueprint(quotes_bp)
