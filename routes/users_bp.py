@@ -1,4 +1,5 @@
 import uuid
+import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
@@ -285,17 +286,28 @@ def login_page():
 
 
 @users_bp.route("/profile", methods=["GET", "POST"])
-@login_required  # Ensure that the user is logged in to access this route
+@login_required
 def edit_profile():
-    form = ProfileEditForm(obj=current_user)  # Populate form with current user's data
+    form = ProfileEditForm(obj=current_user)
+
     if form.validate_on_submit():
         # Update user's profile only if data has changed
         for field in form:
-            if (
-                field.name != "submit"
-                and getattr(current_user, field.name) != field.data
-            ):
-                setattr(current_user, field.name, field.data)
+            if field.name != "submit":
+                if (
+                    field.name == "dob_day"
+                    or field.name == "dob_month"
+                    or field.name == "dob_year"
+                ):
+                    # If the field is part of date of birth, combine them to update date_of_birth
+                    day = form.dob_day.data
+                    month = form.dob_month.data
+                    year = form.dob_year.data
+                    setattr(
+                        current_user, "date_of_birth", datetime.date(year, month, day)
+                    )
+                elif getattr(current_user, field.name) != field.data:
+                    setattr(current_user, field.name, field.data)
 
         try:
             db.session.commit()
