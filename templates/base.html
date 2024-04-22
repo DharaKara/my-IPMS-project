@@ -32,6 +32,9 @@
                     <a class="nav-item nav-link {% if active_page == '/partners' %}active{% endif %}" href="/partners">Partners</a>
                     <a class="nav-item nav-link {% if active_page == '/faqs' %}active{% endif %}" href="/faqs">FAQs</a>
                     <a class="nav-item nav-link {% if active_page == '/contact' %}active{% endif %}" href="/contact">Contact Us</a>
+                    {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link {% if active_page == '/add_car' %}active{% endif %}" href="/add_car">Get Quote</a>
+        {% endif %}
                 </div>
             </div>
             <!-- User icon with dropdown options -->

@@ -5,7 +5,6 @@ import os
 from models.users import User
 from flask_login import LoginManager
 from extension import db
-from models.quote import Quote
 from models.vehicles import Vehicle
 from models.partner import Partner
 from models.partner_detail import PartnerSection

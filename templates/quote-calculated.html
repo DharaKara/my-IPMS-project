@@ -57,9 +57,10 @@
                 <div class="card-body">
                     <img src="{{ company.logo_link }}" class="card-img" alt="company logo"><br><br>
                     <p class="company-name">{{ company.name }}</p>
-                    <p class="monthly-premium">Starting from <span class="highlight">{{ company.monthly_premium }}</span> per month</p>
-                    <p class="excess">Excess: <span class="highlight">{{ company.excess }}</span></p>
+                    <p class="monthly-premium">Starting from <span class="highlight">R{{ calculate_monthly_premium(user, company) }}</span> per month</p>
+                    <p class="excess">Excess: <span class="highlight">R{{ company.excess }}</span></p>
                     <form action="{{ url_for('quotes_bp.interested', partner_id=company.id) }}" method="post">
+                        <!-- Other form fields -->
                         <button class="btn btn-primary" type="submit">I'm Interested</button>
                     </form>
                 </div>

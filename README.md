@@ -1,55 +1,45 @@
 # InsureWheels Web Application Documentation
 
 ## Overview
-InsureWheels is an insurance policy management system designed to streamline the process of comparing car insurance quotes. InsureWheels is a Comparative Services authorized financial service provider, offering three types of car insurance: comprehensive, third party, and third party, fire, and theft.
+InsureWheels is an insurance policy management system designed to simplify the process of comparing car insurance quotes. As a Comparative Services authorized financial service provider, InsureWheels offers comprehensive, third party, and third party, fire, and theft insurance options.
 
-## Features
+## Key Features
 
-1. **User Authentication**: Users can register and log in to access the full functionality of the application.
+1. **User Authentication**: Easily register and log in to access the full functionality of the application. Passwords are securely hashed for user security.
+2. **Intuitive Navigation**: User-friendly navigation bar for effortless access to various pages including Home, Login, Register, Contact Us, FAQs, Partners, and Partner Details.
+3. **Quote Comparison**: Users can compare insurance quotes from different partners to make informed decisions. Quotes are displayed in a visually appealing card format with detailed information.
+4. **Vehicle Management**: Add, edit, or delete vehicles to tailor insurance quotes to your needs. Users can input vehicle details including make, model, year, and additional features.
+5. **Driver Details**: Input driver information for accurate insurance quotes. Users can provide driver details such as license type, issue date, and car insurance history.
+6. **Partner Integration**: Quotes from various insurance partners are displayed, providing users with multiple options to choose from. Each partner's logo and key information are showcased for easy comparison.
+7. **Confirmation**: Receive confirmation upon selecting a quote, ensuring the quotation process is complete. Users are notified that their quote request has been successfully sent to the selected partner for further processing.
+8. **FAQs Page**: Find answers to commonly asked questions about the application and its features. FAQs are organized into categories for easy navigation.
+9. **Contact Us Page**: Reach out to the support team for assistance or inquiries. A contact form is provided for users to submit their queries.
+10. **Partners Page**: Explore detailed information about insurance partners and their offerings. Partners are listed with their logos, names, and brief descriptions, with the option to view more details.
 
-2. **Navigation**: The web application features a user-friendly navigation bar allowing easy access to various pages.
+## How to Use
 
-3. **Quote Comparison**: Registered users can add their cars and drivers to get insurance quotes from different partners, facilitating easy comparison of premiums and excess amounts.
-
-4. **Add/Edit/Delete Cars**: Users can manage their vehicles by adding, editing, or deleting them from their profile.
-
-5. **Add Driver Details**: Users can input driver information to generate accurate insurance quotes.
-
-6. **Partner Integration**: Quotes from various insurance partners such as MiWay, Santam, Old Mutual, and First for Women are displayed in card format, providing users with multiple options to choose from.
-
-7. **Feedback and Confirmation**: Upon selecting a quote, users receive confirmation that their quotation process is complete, and the quote has been sent to the selected partner for further processing.
-
-## Usage
-
-1. **Homepage**: The landing page displays navigation links, including login, register, contact us, FAQs, partners, and partner details. Users can also view the types of insurance offered and read testimonials.
-
-2. **Login/Register**: Users can register for an account or log in if they already have one.
-
-3. **Profile Editing**: Once logged in, users can edit their profile information.
-
-4. **Add Car**: Registered users can add their vehicles by filling out an add car form.
-
-5. **Car Summary**: After adding cars, users can view a summary of their vehicles and edit or delete them as needed.
-
-6. **Add Driver**: Users can input driver details to generate accurate insurance quotes.
-
-7. **Get Quote**: Upon completing the necessary information, users can click "Get Quote" to initiate the quotation process.
-
-8. **Quote Comparison**: The application displays quotes from different insurance partners, allowing users to compare premiums and excess amounts.
-
-9. **Quote Selection**: Users can select a quote they are interested in, which triggers a confirmation message indicating that the quote has been successfully sent to the partner for further processing.
+1. **Homepage**: Explore navigation links and learn about the types of insurance offered. Testimonials provide feedback from satisfied users.
+2. **Login/Register**: Register for an account or log in if you already have one. Password recovery options are available for forgotten passwords.
+3. **Profile Editing**: Edit your profile information for accuracy. Users can update their personal details, including name, email, and contact information.
+4. **Add Car**: Add your vehicles using the provided form. Input vehicle details accurately to receive precise insurance quotes.
+5. **Car Summary**: View a summary of your vehicles and manage them as needed. Edit or delete vehicles to keep your profile up to date.
+6. **Add Driver**: Input driver details to refine insurance quotes. Provide accurate information to ensure quotes reflect your specific circumstances.
+7. **Get Quote**: Click "Get Quote" to initiate the quotation process. Review the quotes from different partners and select the most suitable option.
+8. **Quote Comparison**: Compare quotes from different insurance partners to find the best option. Consider factors such as premiums, excess amounts, and additional benefits.
+9. **Quote Selection**: Select a quote and receive confirmation that it has been sent to the partner for processing. Await further communication from the selected partner regarding your insurance policy.
 
 ## Technology Stack
 
-- **Python**: Backend development using the Flask framework.
-- **HTML/CSS/Bootstrap**: Frontend development for user interface and styling.
-- **Jinja Templates**: Templating engine for generating dynamic HTML content.
-- **Database Models**: Models folder contains all database models for data management.
-- **Routes Organization**: Routes are organized in a routes folder with blueprints for improved code structure and maintainability.
+- **Backend**: Developed with Python using the Flask framework. Secure user authentication and data storage are implemented.
+- **Frontend**: HTML/CSS/Bootstrap for user interface and styling. Responsive design ensures compatibility across devices.
+- **Dynamic Content**: Jinja Templates for generating dynamic HTML content. Content is rendered dynamically based on user interactions.
+- **Data Management**: Database models organized in a models folder. SQLAlchemy ORM used for database operations and management.
+- **Routes Structure**: Organized routes with blueprints for improved code organization. Separation of concerns ensures modular and maintainable code.
+- **Inheritance and Styling**: Inheritance is utilized with a base HTML template (`base.html`) to maintain consistency across pages. A static CSS file (`style.css`) is used to apply consistent styling and improve user experience.
 
 ## Conclusion
 
-InsureWheels provides a user-friendly platform for managing car insurance policies, allowing users to easily compare quotes from various insurance partners. With its intuitive interface and comprehensive features, InsureWheels simplifies the insurance quotation process, ensuring a smooth user experience.
+InsureWheels simplifies car insurance policy management with its user-friendly interface and comprehensive features. Whether you're comparing quotes or managing your policy details, InsureWheels ensures a smooth and hassle-free experience.
 
 ## Some easy to access command lines
 activate my env
